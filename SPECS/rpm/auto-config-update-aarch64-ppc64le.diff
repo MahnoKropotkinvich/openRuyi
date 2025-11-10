@@ -4,7 +4,7 @@
  	target = &buf;
      }
  
-+    if (!mode && !*target && !strcmp(name, "build")) {
++    if (!mode && !*target && !strcmp(name, "conf")) {
 +	*target = newStringBuf();
 +	appendLineStringBuf(*target,
 +            "ref=/usr/lib/rpm\n"
