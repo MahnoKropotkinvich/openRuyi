@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           python-linux-procfs
-Version:        0.7.3
+Version:        0.7.4
 Release:        %autorelease
 Summary:        Linux /proc abstraction classes
 License:        GPL-2.0-only
