@@ -24,6 +24,7 @@ path = [
 	"**.1",
 	"**.5",
 	"**.8",
+	"**.zone",
 	]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
