@@ -91,7 +91,6 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}/lib/modprobe.d
 %if %{with dist_conf}
 %{_sysconfdir}/depmod.d/dist.conf
 %endif
-%{_datadir}/pkgconfig/kmod.pc
 %attr(0644,root,root) %{_mandir}/man5/mod*.d*.5*
 %attr(0644,root,root) %{_mandir}/man5/depmod.d.5*
 %{_mandir}/man5/modprobe.conf.5*
@@ -104,6 +103,7 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}/lib/modprobe.d
 
 %files devel
 %{_includedir}/libkmod.h
+%{_datadir}/pkgconfig/kmod.pc
 %{_libdir}/pkgconfig/libkmod.pc
 %{_libdir}/libkmod.so
 
