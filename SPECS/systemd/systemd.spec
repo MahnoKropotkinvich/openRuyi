@@ -25,7 +25,7 @@
 # TODO: We disable lots of stuff so if we want to enable them
 #.      Please first check the spec file. Thanks. - 251
 # If we want systemd-journal-remote, change this to 1
-%bcond journal_remote 0
+%bcond journal_remote 1
 # If we have X then we can build systemd with X support
 %bcond x 0
 # If we want network support, change this to 1
@@ -114,6 +114,7 @@ BuildOption(conf):  -Dtests=false
 BuildOption(conf):  -Dinstall-tests=false
 BuildOption(conf):  -Dnobody-user=nobody
 BuildOption(conf):  -Dnobody-group=nobody
+BuildOption(conf):  -Dremote=%{?with_journal_remote:enabled}%{!?with_journal_remote:disabled}
 BuildOption(conf):  -Dman=%{?with_docs:enabled}%{!?with_docs:disabled}
 BuildOption(conf):  -Dfallback-hostname="localhost"
 BuildOption(conf):  -Ddefault-dnssec=no
@@ -1239,9 +1240,9 @@ fi
 
 %if %{with journal_remote}
 %files journal-remote
-%{_bindir}/systemd-journal-gatewayd
-%{_bindir}/systemd-journal-remote
-%{_bindir}/systemd-journal-upload
+%{pkgdir}/systemd-journal-gatewayd
+%{pkgdir}/systemd-journal-remote
+%{pkgdir}/systemd-journal-upload
 %{_sysconfdir}/systemd/journal-remote.conf
 %{_sysconfdir}/systemd/journal-upload.conf
 %if %{with docs}
@@ -1258,17 +1259,11 @@ fi
 %{_mandir}/man5/journal-upload.conf.5.gz
 %{_mandir}/man5/journal-upload.conf.d.5.gz
 %endif
-%{_prefix}/lib/systemd/system/systemd-journal-gatewayd.service
-%{_prefix}/lib/systemd/system/systemd-journal-gatewayd.socket
-%{_prefix}/lib/systemd/system/systemd-journal-remote.service
-%{_prefix}/lib/systemd/system/systemd-journal-remote.socket
-%{_prefix}/lib/systemd/system/systemd-journal-upload.service
-%{_prefix}/lib/systemd/system/sockets.target.wants/systemd-journal-gatewayd.socket
-%{_prefix}/lib/systemd/system/sockets.target.wants/systemd-journal-remote.socket
-%dir %{_localstatedir}/lib/systemd/journal-upload
+%{pkgdir}/systemd-journal-upload
+%{_sharedstatedir}/systemd/journal-upload
 %ghost %{_localstatedir}/lib/systemd/journal-upload/state
-%dir %{_localstatedir}/cache/systemd/journal-remote
 %{_localstatedir}/lib/private/systemd/journal-upload/state
+%{_datadir}/systemd/gatewayd/browse.html
 %endif
 
 %if %{with network}
