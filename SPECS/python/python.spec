@@ -148,6 +148,7 @@ BuildRequires:  pkgconfig
 BuildRequires:  python-rpm-macros
 BuildRequires:  sqlite-devel
 BuildRequires:  zlib-devel
+BuildRequires:  xz-devel
 
 %if %{with rpmwheels}
 # Python 3.12 removed the deprecated imp module,
@@ -583,7 +584,7 @@ done
 %{dynload_dir}/_interpreters.*.so
 %{dynload_dir}/_json.*.so
 %{dynload_dir}/_lsprof.*.so
-#%{dynload_dir}/_lzma.*.so
+%{dynload_dir}/_lzma.*.so
 %{dynload_dir}/_md5.*.so
 %{dynload_dir}/_multibytecodec.*.so
 %{dynload_dir}/_multiprocessing.*.so
