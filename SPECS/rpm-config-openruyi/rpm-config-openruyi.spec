@@ -28,8 +28,6 @@ firmware.attr
 firmware.prov
 kernel.attr
 kmp.attr
-locale.attr
-locale.prov
 macros
 macros.buildsystem
 macros.ldconfig
@@ -65,7 +63,6 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{_rpmconfigdir}/fileattrs/*
 %{_rpmconfigdir}/brp-openruyi
 %{_rpmconfigdir}/firmware.prov
-%{_rpmconfigdir}/locale.prov
 # kmod deps
 %{_rpmconfigdir}/find-provides.ksyms
 %{_rpmconfigdir}/find-requires.ksyms
