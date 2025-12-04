@@ -9,19 +9,23 @@
 Name:           python-%{srcname}
 Version:        5.2.1
 Release:        %autorelease
+Summary:        Python module to simplify usage of decorators
 License:        BSD-2-Clause
 URL:            https://pypi.org/project/decorator/
-Summary:        Python module to simplify usage of decorators
-Provides:       python3-%{srcname}
-%python_provide python3-%{srcname}
+VCS:            git:https://github.com/micheles/decorator
 #!RemoteAsset
 Source0:        https://files.pythonhosted.org/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
+BuildSystem:    pyproject
+
+BuildOption(install): -l %{srcname} +auto
 
 BuildRequires:  python3-devel
 BuildRequires:  pyproject-rpm-macros
-BuildSystem:    pyproject
-BuildOption(install): -l %{srcname} +auto
+
+Provides:       python3-%{srcname}
+%python_provide python3-%{srcname}
+
 %description
 The aim of the decorator module is to simplify the usage of decorators
 for the average programmer, and to popularize decorators usage giving examples
