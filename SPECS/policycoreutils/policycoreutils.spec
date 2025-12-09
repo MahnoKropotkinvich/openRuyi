@@ -103,7 +103,7 @@ an SELinux environment.
 %package        dbus
 Summary:        SELinux policy core DBUS api
 Requires:       python3-policycoreutils = %{version}-%{release}
-Requires:       python3-gobject-base
+Requires:       python3-pygobject
 Requires:       polkit
 BuildArch:      noarch
 
@@ -116,7 +116,7 @@ Summary:        SELinux configuration GUI
 Requires:       policycoreutils-devel = %{version}-%{release}
 Requires:       python3-policycoreutils = %{version}-%{release}
 Requires:       policycoreutils-dbus = %{version}-%{release}
-Requires:       python3-gobject
+Requires:       python3-pygobject
 BuildRequires:  desktop-file-utils
 BuildArch:      noarch
 
