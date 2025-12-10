@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           spirv-cross
-Version:        1.4.328.1
+Version:        1.4.335.0
 Release:        %autorelease
 Summary:        Tool and library for SPIR-V reflection and disassembly
 License:        Apache-2.0 OR MIT
