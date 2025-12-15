@@ -12,6 +12,10 @@ License:        GPL-2.0-or-later AND GFDL-1.1-no-invariants-or-later
 URL:            https://gitlab.gnome.org/GNOME/gtk-doc/
 #!RemoteAsset
 Source:         http://download.gnome.org/sources/gtk-doc/1.35/gtk-doc-%{version}.tar.xz
+
+# from https://gitlab.gnome.org/GNOME/gtk-doc/-/merge_requests/74
+Patch0:         gtk-doc-mkhtml-test-fix.patch
+
 BuildSystem:    meson
 
 BuildRequires:  meson
@@ -21,9 +25,11 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(python3)
 BuildRequires:  python3-pygments
 BuildRequires:  python3-lxml
+BuildRequires:  python3-parameterized
 BuildRequires:  itstool
 BuildRequires:  docbook-utils
 BuildRequires:  libxslt
+BuildRequires:  docbook-xsl
 
 Requires:       docbook-utils
 Requires:       libxslt
