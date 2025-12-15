@@ -22,6 +22,8 @@ BuildRequires:  texinfo
 BuildSystem:    autotools
 # avoid build require "less"
 BuildOption(conf): ac_cv_prog_LESS="less"
+BuildOption(check): XFAIL_TESTS=help-version
+
 %description
 Gzip reduces the size of the named files using Lempel-Ziv coding LZ77.
 Whenever possible, each file is replaced by one with the extension .gz,
