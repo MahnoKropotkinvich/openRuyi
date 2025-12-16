@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
-# SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -17,12 +17,12 @@ Source1:        nis-domainname
 Source2:        nis-domainname.service.in
 BuildSystem:    autotools
 
-BuildOption(build): CFLAGS="%{optflags} -D_GNU_SOURCE"
+BuildOption(build):  CFLAGS="%{optflags} -D_GNU_SOURCE"
 
-BuildOption(install): prefix=%{_prefix}
-BuildOption(install): exec_prefix=%{_exec_prefix}
-BuildOption(install): bindir=%{_bindir}
-BuildOption(install): mandir=%{_mandir}
+BuildOption(install):  prefix=%{_prefix}
+BuildOption(install):  exec_prefix=%{_exec_prefix}
+BuildOption(install):  bindir=%{_bindir}
+BuildOption(install):  mandir=%{_mandir}
 
 BuildRequires:  gcc
 BuildRequires:  systemd-rpm-macros
@@ -50,18 +50,18 @@ install -p -m 0644 nis-domainname.service %{buildroot}%{_unitdir}
 %files
 %license COPYRIGHT
 %doc debian/changelog
-%{_bindir}/%{name}
+%{_bindir}/hostname
 %{_bindir}/domainname
 %{_bindir}/dnsdomainname
 %{_bindir}/nisdomainname
 %{_bindir}/ypdomainname
-%{_mandir}/man1/%{name}.1%{?ext_man}
+%{_mandir}/man1/hostname.1%{?ext_man}
 %{_mandir}/man1/domainname.1%{?ext_man}
 %{_mandir}/man1/dnsdomainname.1%{?ext_man}
 %{_mandir}/man1/nisdomainname.1%{?ext_man}
 %{_mandir}/man1/ypdomainname.1%{?ext_man}
 %{_unitdir}/nis-domainname.service
-%{_libexecdir}/%{name}/
+%{_libexecdir}/hostname/
 
 %changelog
 %{?autochangelog}
