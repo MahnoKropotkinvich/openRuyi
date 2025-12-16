@@ -15,8 +15,8 @@ URL:            https://libuv.org
 Source0:        https://dist.libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
 #!RemoteAsset
 Source1:        https://dist.libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz.sign
-
 BuildSystem:    autotools
+
 BuildOption(conf):  --disable-static
 
 BuildRequires:  automake
@@ -39,6 +39,9 @@ Mozilla's Rust language, Luvit, Julia, pyuv, and others.
 
 %prep -a
 ./autogen.sh
+
+%check
+# skip tests as net is disable.
 
 %files
 %license LICENSE
