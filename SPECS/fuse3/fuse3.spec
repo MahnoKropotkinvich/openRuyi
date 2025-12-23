@@ -14,6 +14,7 @@ Release:        %autorelease
 Summary:        File System in Userspace (FUSE) v3 utilities
 License:        GPL-1.0-or-later
 URL:            http://fuse.sf.net
+VCS:            git:https://github.com/libfuse/libfuse
 #!RemoteAsset
 Source0:        https://github.com/libfuse/libfuse/releases/download/fuse-%{version}/fuse-%{version}.tar.gz
 #!RemoteAsset
@@ -29,33 +30,25 @@ BuildRequires:  libselinux-devel
 BuildRequires:  ninja
 BuildRequires:  meson
 
+Provides:       %{name}-libs = %{version}-%{release}
+
 Requires:       fuse-common
-Requires:       %{name}-libs = %{version}-%{release}
 
 %description
 With FUSE it is possible to implement a fully functional filesystem in a
 userspace program. This package contains the FUSE v3 userspace tools to
 mount a FUSE filesystem.
 
-%package        libs
-Summary:        File System in Userspace (FUSE) v3 libraries
-License:        LGPL-2.1-or-later
-
-%description    libs
-Devel With FUSE it is possible to implement a fully functional filesystem in a
-userspace program. This package contains the FUSE v3 libraries.
-
 %package        devel
 Summary:        File System in Userspace (FUSE) v3 devel files
-Requires:       %{name}-libs = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig
 License:        LGPL-2.1-or-later
 
-%description devel
+%description    devel
 With FUSE it is possible to implement a fully functional filesystem in a
 userspace program. This package contains development files (headers,
 pgk-config) to develop FUSE v3 based applications/filesystems.
-
 
 %package     -n fuse-common
 Summary:        Common files for File System in Userspace (FUSE) v2 and v3
@@ -92,15 +85,12 @@ rm -f %{buildroot}%{_udevrulesdir}/99-fuse3.rules
 %check
 
 %files
-%license LICENSE GPL2.txt
 %doc AUTHORS ChangeLog.rst README.md
+%license LICENSE GPL2.txt
 %{_sbindir}/mount.fuse3
 %attr(4755,root,root) %{_bindir}/fusermount3
 %{_mandir}/man1/*
 %{_mandir}/man8/*
-
-%files libs
-%license LGPL2.txt
 %{_libdir}/libfuse3.so.*
 
 %files devel
