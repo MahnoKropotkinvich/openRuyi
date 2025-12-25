@@ -102,6 +102,9 @@ BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(libspa-0.2)
 %endif
 
+# The keyboard layout information provided by this package is needed at runtime
+Requires: xkeyboard-config
+
 %description
 Weston is the reference wayland compositor that can run on KMS, under X11
 or under another compositor.
