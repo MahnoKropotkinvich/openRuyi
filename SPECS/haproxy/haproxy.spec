@@ -12,6 +12,7 @@ Release:        %autorelease
 Summary:        The Reliable, High Performance TCP/HTTP Load Balancer
 License:        GPL-2.0-or-later
 URL:            https://www.haproxy.org/
+VCS:            git:https://github.com/haproxy/haproxy
 #!RemoteAsset
 Source0:        https://www.haproxy.org/download/3.3/src/devel/%{name}-%{version}-%{minor}.tar.gz
 Source1:        %{name}.cfg
@@ -47,7 +48,8 @@ BuildRequires:  pkgconfig(openssl)
 BuildRequires:  libatomic_ops-devel
 BuildRequires:  pkgconfig(libxcrypt)
 BuildRequires:  pkgconfig(libsystemd)
-Requires(pre):    shadow
+
+Requires(pre):  shadow
 %{?systemd_requires}
 
 %description
