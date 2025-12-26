@@ -11,6 +11,7 @@ Release:        %autorelease
 Summary:        Device Tree Compiler
 License:        GPL-2.0-or-later
 URL:            https://devicetree.org/
+VCS:            git:https://github.com/dgibson/dtc
 #!RemoteAsset
 Source0:        https://www.kernel.org/pub/software/utils/%{name}/%{name}-%{version}.tar.xz
 #!RemoteAsset
@@ -72,7 +73,6 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 
 %install -p
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
-
 
 %check -p
 %define _smp_mflags -j1
