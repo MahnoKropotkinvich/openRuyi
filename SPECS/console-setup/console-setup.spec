@@ -6,13 +6,13 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:               console-setup
-Version:            1.242
+Version:            1.244
 Release:            %autorelease
 Summary:            Tools for configuring the console font and keyboard
 License:            GPL-2.0-or-later AND MIT AND LicenseRef-openRuyi-Public-Domain
 URL:                https://packages.debian.org/sid/console-setup
 #!RemoteAsset
-Source:             https://ftp.debian.org/debian/pool/main/c/console-setup/console-setup_%{version}.tar.xz
+Source:             https://salsa.debian.org/installer-team/console-setup/-/archive/%{version}/console-setup-%{version}.tar.bz2
 BuildSystem:        autotools
 Patch:              0001-fix-makefile.patch
 
@@ -26,6 +26,10 @@ BuildOption(install): mandir=%{_mandir}
 
 BuildRequires:      perl
 BuildRequires:      make
+BuildRequires:      bdfresize
+BuildRequires:      otf2bdf
+BuildRequires:      unifont
+BuildRequires:      fonts-dejavu
 Requires:       kbd
 
 %description
@@ -39,14 +43,23 @@ Summary:    Generate console fonts from BDF source fonts
 This package provides a command-line converter to build console fonts from BDF
 sources.
 
+%prep -a
+# Adapt DejaVu path to where oR installs it
+sed -i "s@/usr/share/fonts/truetype/dejavu@"%{_datadir}"/fonts/truetype@g" Fonts/Makefile
+
 # No configure
 %conf
+
+%build -p
+# Build all BDF fonts
+make bdf
 
 # No tests
 %check
 
 %files
-%doc README COPYRIGHT CHANGES copyright.fonts copyright.xkb Fonts/copyright
+%doc README debian/changelog
+%license COPYRIGHT copyright.fonts copyright.xkb Fonts/copyright
 %{_bindir}/ckbcomp
 %{_bindir}/setupcon
 %config(noreplace) %{_sysconfdir}/default/console-setup
