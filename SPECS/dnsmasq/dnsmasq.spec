@@ -1,6 +1,7 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: Yafen Fang <yafen@iscas.ac.cn>
+# SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 %global _copts -DHAVE_DBUS -DHAVE_LIBIDN2 -DHAVE_DNSSEC -DHAVE_CONNTRACK -DHAVE_NFTSET
@@ -28,6 +29,7 @@ BuildOption(install):  PREFIX=%{_prefix}
 BuildOption(install):  CFLAGS="%{optflags}"
 BuildOption(install):  LDFLAGS="%{?build_ldflags}"
 BuildOption(install):  COPTS="%{_copts}"
+BuildOption(install):  BINDIR="%{_bindir}"
 
 BuildRequires:  gcc
 BuildRequires:  pkgconfig(dbus-1)
@@ -114,14 +116,13 @@ install -p -Dpm 644 %{SOURCE3} %{buildroot}%{_sysusersdir}/%{name}.conf
 %dir %attr(0755,root,dnsmasq) %{_var}/lib/dnsmasq
 %{_datadir}/dbus-1/system.d/dnsmasq.conf
 %{_bindir}/dhcp_*
-%{_sbindir}/dnsmasq
+%{_bindir}/dnsmasq
 %{_unitdir}/%{name}.service
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/trust-anchors.conf
 %{_sysusersdir}/dnsmasq.conf
 %{_mandir}/man1/dhcp_*
 %{_mandir}/man8/dnsmasq*
-%exclude %{_initrddir}
 
 %changelog
 %{?autochangelog}

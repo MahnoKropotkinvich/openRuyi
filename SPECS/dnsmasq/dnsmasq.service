@@ -5,7 +5,7 @@ Wants=nss-lookup.target
 After=network.target
 
 [Service]
-ExecStart=/usr/sbin/dnsmasq
+ExecStart=/usr/bin/dnsmasq
 Type=forking
 PIDFile=/run/dnsmasq.pid
 
