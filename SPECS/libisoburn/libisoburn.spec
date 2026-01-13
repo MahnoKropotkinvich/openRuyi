@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
 #
@@ -41,8 +41,8 @@ that use libisoburn.
 Summary:         ISO-9660 and Rock Ridge image manipulation tool
 URL:             https://scdbackup.sourceforge.net/xorriso_eng.html
 Requires:        %{name} = %{version}
-Requires(post):  /usr/sbin/alternatives
-Requires(preun): /usr/sbin/alternatives
+Requires(post):  alternatives
+Requires(preun): alternatives
 
 %description -n xorriso
 Xorriso copies file objects into Rock Ridge enhanced ISO-9660 filesystems and
@@ -59,15 +59,15 @@ touch %{buildroot}%{_mandir}/man1/cdrecord.1.gz
 touch %{buildroot}%{_mandir}/man1/mkisofs.1.gz
 
 %post -n xorriso
-/usr/sbin/alternatives --install %{_bindir}/cdrecord cdrecord %{_bindir}/xorrecord 50 \
+alternatives --install %{_bindir}/cdrecord cdrecord %{_bindir}/xorrecord 50 \
   --slave %{_mandir}/man1/cdrecord.1.gz cdrecord-man %{_mandir}/man1/xorrecord.1.gz
-/usr/sbin/alternatives --install %{_bindir}/mkisofs mkisofs %{_bindir}/xorrisofs 50 \
+alternatives --install %{_bindir}/mkisofs mkisofs %{_bindir}/xorrisofs 50 \
   --slave %{_mandir}/man1/mkisofs.1.gz mkisofs-man %{_mandir}/man1/xorrisofs.1.gz
 
 %preun -n xorriso
 if [ $1 -eq 0 ]; then
-  /usr/sbin/alternatives --remove cdrecord %{_bindir}/xorrecord
-  /usr/sbin/alternatives --remove mkisofs %{_bindir}/xorrisofs
+  alternatives --remove cdrecord %{_bindir}/xorrecord
+  alternatives --remove mkisofs %{_bindir}/xorrisofs
 fi
 
 %files
