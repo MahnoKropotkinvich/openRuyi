@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
@@ -7,7 +7,7 @@
 %global srcname ruamel.yaml.clib
 
 Name:           python-ruamel-yaml-clib
-Version:        0.2.14
+Version:        0.2.15
 Release:        %autorelease
 Summary:        C version of reader, parser and emitter for ruamel.yaml derived from libyaml
 License:        MIT
@@ -18,11 +18,15 @@ Source0:        https://yaml.dev/ruamel-dl-tagged-releases/%{srcname}-%{version}
 BuildSystem:    pyproject
 
 BuildOption(install): -l _ruamel_yaml
+BuildOption(check):   _ruamel_yaml
 
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3-Cython
+# For %check
+BuildRequires:  python-ruamel-yaml
 
+Requires:       python-ruamel-yaml
 Provides:       python3-ruamel-yaml-clib
 %python_provide python3-ruamel-yaml-clib
 
