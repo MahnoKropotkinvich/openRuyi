@@ -53,12 +53,18 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    devel
 This package contains development files for %{name}.
 
+# Useful for Neovim, Aegisub, etc.
+%package        static
+Summary:        Static files for %{name}
+Requires:       %{name}-devel = %{version}-%{release}
+
+%description    static
+This package contains static files for %{name}.
+
 # overwrite conf process, don't do anything here
 %conf
 
 %install -a
-# Remove static .a
-find %{buildroot} -type f -name *.a -delete -print
 
 # no tests.
 %check
@@ -76,6 +82,9 @@ find %{buildroot} -type f -name *.a -delete -print
 %{_includedir}/luajit-%{major}/
 %{_libdir}/libluajit-*.so
 %{_libdir}/pkgconfig/luajit.pc
+
+%files static
+%{_libdir}/libluajit-*.a
 
 %changelog
 %{?autochangelog}
