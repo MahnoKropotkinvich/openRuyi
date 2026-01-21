@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Suyun114 <ziyu.oerv@isrc.iscas.ac.cn>
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,6 +12,7 @@ Release:        %autorelease
 Summary:        Minimalist variant of UNIX utilities linked in a single executable
 License:        GPL-2.0-or-later
 URL:            https://www.busybox.net/
+# VCS: No reliable VCS link available
 #!RemoteAsset
 Source0:        https://busybox.net/downloads/%{name}-%{version}.tar.bz2
 #!RemoteAsset
