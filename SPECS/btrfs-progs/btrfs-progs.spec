@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,36 +12,47 @@ Release:        %autorelease
 Summary:        Userspace programs for btrfs
 License:        GPL-2.0-only AND LGPL-2.1-or-later
 URL:            https://btrfs.wiki.kernel.org/index.php/Main_Page
+VCS:            git:https://github.com/kdave/btrfs-progs
 #!RemoteAsset
 Source:         https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v%{version}.tar.xz
 BuildSystem:    autotools
 
-BuildOption(conf): --disable-documentation
-BuildOption(conf): CFLAGS="%{optflags} -fno-strict-aliasing"
-BuildOption(conf): --with-crypto=libgcrypt
+BuildOption(conf):  --disable-documentation
+BuildOption(conf):  CFLAGS="%{optflags} -fno-strict-aliasing"
+BuildOption(conf):  --with-crypto=libgcrypt
+BuildOption(install):  mandir=%{_mandir}
+BuildOption(install):  bindir=%{_sbindir}
+BuildOption(install):  libdir=%{_libdir}
+BuildOption(install):  incdir=%{_includedir}
 
-BuildOption(install): mandir=%{_mandir} bindir=%{_sbindir} libdir=%{_libdir} incdir=%{_includedir}
-
-BuildRequires:  gcc autoconf automake make
-BuildRequires:  pkgconfig(ext2fs) pkgconfig(libacl) lzo-devel
-BuildRequires:  util-linux-devel pkgconfig(zlib) pkgconfig(libudev)
+BuildRequires:  gcc
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  make
+BuildRequires:  pkgconfig(ext2fs)
+BuildRequires:  pkgconfig(libacl)
+BuildRequires:  lzo-devel
+BuildRequires:  util-linux-devel
+BuildRequires:  pkgconfig(zlib)
+BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libgcrypt) >= 1.8.0
 BuildRequires:  pkgconfig(libzstd) >= 1.0.0
 BuildRequires:  python3-devel >= 3.4
-BuildRequires:  python3-setuptools python3-pip
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-pip
 
 %description
 The btrfs-progs package provides userspace programs needed to create,
 check, and manage btrfs filesystems.
 
-%package -n     libbtrfs
+%package     -n libbtrfs
 Summary:        btrfs filesystem-specific runtime library
 License:        GPL-2.0-only
 
 %description -n libbtrfs
 This package contains the main library used by btrfs programs.
 
-%package -n     libbtrfsutil
+%package     -n libbtrfsutil
 Summary:        btrfs filesystem-specific runtime utility library
 License:        LGPL-2.1-or-later
 
@@ -49,20 +61,22 @@ This package contains an alternative utility library for btrfs programs.
 
 %package        devel
 Summary:        btrfs filesystem-specific libraries and headers
-Requires:       btrfs-progs = %{version}
-Requires:       libbtrfs = %{version}
-Requires:       libbtrfsutil = %{version}
+Requires:       btrfs-progs%{?_isa} = %{version}-%{release}
+Requires:       libbtrfs%{?_isa} = %{version}-%{release}
+Requires:       libbtrfsutil%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package contains the libraries and header files needed to
 develop btrfs filesystem-specific programs.
 
-%package -n     python3-btrfsutil
-Summary:        Python 3 bindings for libbtrfsutil
-Requires:       libbtrfsutil = %{version}
+%package     -n python-btrfsutil
+Summary:        Python bindings for libbtrfsutil
+Requires:       libbtrfsutil%{?_isa} = %{version}-%{release}
+Provides:       python3-btrfsutil
+%python_provide python3-btrfsutil
 
-%description -n python3-btrfsutil
-This package contains Python 3 bindings to the libbtrfsutil library.
+%description -n python-btrfsutil
+This package contains Python bindings to the libbtrfsutil library.
 
 %conf -p
 ./autogen.sh
@@ -111,7 +125,7 @@ cd libbtrfsutil/python
 %{_libdir}/libbtrfsutil.so
 %{_libdir}/pkgconfig/libbtrfsutil.pc
 
-%files -n python3-btrfsutil -f %{pyproject_files}
+%files -n python-btrfsutil -f %{pyproject_files}
 %license libbtrfsutil/COPYING
 
 %changelog
