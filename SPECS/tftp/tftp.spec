@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
@@ -48,6 +48,9 @@ install -D -p -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/tftp.socket
 install -D -p -m 644 %{SOURCE2} %{buildroot}%{_unitdir}/tftp.service
 
 install -d -m 0755 %{buildroot}%{_localstatedir}/lib/tftpboot
+
+# No tests.
+%check
 
 %post server
 %systemd_post tftp.socket
