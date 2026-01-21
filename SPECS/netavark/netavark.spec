@@ -79,14 +79,10 @@ cd docs
 # there's no check
 
 %preun
-%systemd_preun netavark-dhcp-proxy.service \
-               netavark-firewalld-reload.service \
-               netavark-nftables-reload.service
+%systemd_preun netavark-dhcp-proxy.service netavark-firewalld-reload.service netavark-nftables-reload.service
 
 %postun
-%systemd_postun netavark-dhcp-proxy.service \
-                netavark-firewalld-reload.service \
-                netavark-nftables-reload.service
+%systemd_postun netavark-dhcp-proxy.service netavark-firewalld-reload.service netavark-nftables-reload.service
 
 %files
 %dir %{_libexecdir}/podman
