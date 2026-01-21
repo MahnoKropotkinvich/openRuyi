@@ -19,18 +19,18 @@ VCS:            git:git://anongit.freedesktop.org/git/cairo
 Source0:        https://cairographics.org/releases/%{name}-%{version}.tar.xz
 BuildSystem:    meson
 
-BuildOption(conf):    -Dfreetype=enabled
-BuildOption(conf):    -Dfontconfig=enabled
-BuildOption(conf):    -Dglib=enabled
+BuildOption(conf):  -Dfreetype=enabled
+BuildOption(conf):  -Dfontconfig=enabled
+BuildOption(conf):  -Dglib=enabled
 %if %{with gtk_doc}
-BuildOption(conf):    -Dgtk_doc=true
+BuildOption(conf):  -Dgtk_doc=true
 %endif
-BuildOption(conf):    -Dspectre=disabled
-BuildOption(conf):    -Dsymbol-lookup=disabled
-BuildOption(conf):    -Dtee=enabled
-BuildOption(conf):    -Dtests=disabled
-BuildOption(conf):    -Dxcb=enabled
-BuildOption(conf):    -Dxlib=enabled
+BuildOption(conf):  -Dspectre=disabled
+BuildOption(conf):  -Dsymbol-lookup=disabled
+BuildOption(conf):  -Dtee=enabled
+BuildOption(conf):  -Dtests=disabled
+BuildOption(conf):  -Dxcb=enabled
+BuildOption(conf):  -Dxlib=enabled
 
 BuildRequires:  meson
 %if %{with gtk_doc}
@@ -57,7 +57,7 @@ taking advantage of display hardware acceleration when available.
 
 %package        devel
 Summary:        Development files for cairo
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 Cairo is a 2D graphics library designed to provide high-quality display
@@ -68,7 +68,7 @@ needed for developing software which uses the cairo graphics library.
 
 %package        gobject
 Summary:        GObject bindings for cairo
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    gobject
 Cairo is a 2D graphics library designed to provide high-quality display
@@ -79,8 +79,8 @@ integrate well with the GObject object system used by GNOME.
 
 %package         gobject-devel
 Summary:         Development files for cairo-gobject
-Requires:        %{name}-devel = %{version}-%{release}
-Requires:        %{name}-gobject = %{version}-%{release}
+Requires:        %{name}-devel%{?_isa} = %{version}-%{release}
+Requires:        %{name}-gobject%{?_isa} = %{version}-%{release}
 
 %description    gobject-devel
 Cairo is a 2D graphics library designed to provide high-quality display
@@ -91,7 +91,7 @@ needed for developing software which uses the cairo Gobject library.
 
 %package        tools
 Summary:        Development tools for cairo
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    tools
 Cairo is a 2D graphics library designed to provide high-quality display
