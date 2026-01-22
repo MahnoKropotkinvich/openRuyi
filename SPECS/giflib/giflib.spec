@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -16,14 +17,15 @@ Source:         https://downloads.sf.net/giflib/giflib-%{version}.tar.gz
 Patch:          0001-disable-doc.patch
 BuildSystem:    autotools
 
-BuildOption(install): PREFIX="%{_prefix}"
-BuildOption(install): LIBDIR="%{_libdir}"
-BuildOption(install): INCDIR="%{_includedir}"
-BuildOption(install): BINDIR="%{_bindir}"
+BuildOption(install):  PREFIX="%{_prefix}"
+BuildOption(install):  LIBDIR="%{_libdir}"
+BuildOption(install):  INCDIR="%{_includedir}"
+BuildOption(install):  BINDIR="%{_bindir}"
 
 BuildRequires:  fdupes
-BuildRequires:  libtool >= 2
-BuildRequires:  gcc make
+BuildRequires:  libtool
+BuildRequires:  gcc
+BuildRequires:  make
 
 %description
 A library for manipulating GIF image files. With the expiration of the LZW
@@ -31,7 +33,7 @@ patent, giflib can be used as a replacement for libungif.
 
 %package        devel
 Summary:        Development files for the giflib library
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package contains the header files and symbolic links needed to develop
