@@ -3,6 +3,7 @@
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: laokz <zhangkai@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -14,20 +15,27 @@ License:        BSD-4-Clause AND (GPL-2.0-or-later OR MPL-1.1)
 URL:            https://github.com/cyrusimap/cyrus-sasl/
 #!RemoteAsset
 Source:         https://github.com/cyrusimap/cyrus-sasl/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+BuildSystem:    autotools
+
 Patch0:         0001-cyrus-sasl-lfs.patch
 Patch1:         0002-fix_libpq-fe_include.patch
 Patch2:         0003-Fix-time.h-check.patch
 Patch3:         0004-cyrus-sasl-make-digestmd5-work-ssl3.patch
 
-BuildSystem:    autotools
-BuildOption(conf): --with-pic --with-plugindir=%{_libdir}/sasl2 --with-configdir=%{_sysconfdir}/sasl2/
-BuildOption(conf): --with-saslauthd=/run/sasl2/ --with-dblib=gdbm --enable-login
-BuildOption(conf): --enable-gssapi --enable-ntlm --with-devrandom=/dev/urandom
+BuildOption(conf):  --with-pic
+BuildOption(conf):  --with-plugindir=%{_libdir}/sasl2
+BuildOption(conf):  --with-configdir=%{_sysconfdir}/sasl2/
+BuildOption(conf):  --with-saslauthd=/run/sasl2/
+BuildOption(conf):  --with-dblib=gdbm
+BuildOption(conf):  --enable-login
+BuildOption(conf):  --enable-gssapi
+BuildOption(conf):  --enable-ntlm
+BuildOption(conf):  --with-devrandom=/dev/urandom
 
 BuildRequires:  gdbm-devel
-BuildRequires:  krb5-devel
+BuildRequires:  pkgconfig(krb5)
 BuildRequires:  libtool
-BuildRequires:  openssl-devel
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig
 
 %description
@@ -36,11 +44,11 @@ authentication and data security in Internet protocols. It can be used on the
 client or server side to provide authentication. This package contains the main
 library and all standard authentication mechanism plugins.
 
-%package devel
+%package        devel
 Summary:        Development files for the Cyrus SASL library
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 This package contains the header files, pkg-config files, and development
 documentation needed to build applications that use the Cyrus SASL API.
 
