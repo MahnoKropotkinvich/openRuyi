@@ -2,39 +2,49 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 %bcond systemd 1
 
-Name:             conntrack-tools
-Version:          1.4.8
-Release:          %autorelease
-Summary:          Userspace tools for interacting with the Connection Tracking System
-License:          GPL-2.0-only
-URL:              http://conntrack-tools.netfilter.org/
+Name:           conntrack-tools
+Version:        1.4.8
+Release:        %autorelease
+Summary:        Userspace tools for interacting with the Connection Tracking System
+License:        GPL-2.0-only
+URL:            http://conntrack-tools.netfilter.org/
+VCS:            git:https://git.netfilter.org/conntrack-tools
 #!RemoteAsset
-Source0:          http://netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.xz
-Source1:          conntrackd.service
-Source2:          conntrackd.conf
-BuildSystem:      autotools
+Source0:        http://netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.xz
+Source1:        conntrackd.service
+Source2:        conntrackd.conf
+BuildSystem:    autotools
 
-BuildOption(conf): --disable-static
+BuildOption(conf):  --disable-static
 %if %{with systemd}
-BuildOption(conf): --enable-systemd
+BuildOption(conf):  --enable-systemd
 %else
-BuildOption(conf): --disable-systemd
+BuildOption(conf):  --disable-systemd
 %endif
-BuildOption(build): CFLAGS='%{optflags} -Wl,-z,lazy -DCONNTRACKD_LIB_DIR=\"%{_libdir}/conntrack-tools\"'
+BuildOption(build):  CFLAGS='%{optflags} -Wl,-z,lazy -DCONNTRACKD_LIB_DIR=\"%{_libdir}/conntrack-tools\"'
 
-BuildRequires:    libnfnetlink-devel libnetfilter_conntrack-devel libtirpc-devel
-BuildRequires:    libnetfilter_cttimeout-devel libnetfilter_cthelper-devel
-BuildRequires:    libmnl-devel libnetfilter_queue-devel pkgconfig bison flex
-BuildRequires:    gcc make
+BuildRequires:  pkgconfig(libnfnetlink)
+BuildRequires:  pkgconfig(libnetfilter_conntrack)
+BuildRequires:  pkgconfig(libtirpc)
+BuildRequires:  pkgconfig(libnetfilter_cttimeout)
+BuildRequires:  pkgconfig(libnetfilter_cthelper)
+BuildRequires:  pkgconfig(libmnl)
+BuildRequires:  pkgconfig(libnetfilter_queue)
+BuildRequires:  pkgconfig
+BuildRequires:  bison
+BuildRequires:  flex
+BuildRequires:  gcc
+BuildRequires:  make
 %if %{with systemd}
-BuildRequires:    systemd-devel
-Requires(post):   systemd
-Requires(preun):  systemd
+BuildRequires:  pkgconfig(libsystemd)
+Requires(post): systemd
+Requires(preun): systemd
 Requires(postun): systemd
 %endif
 
