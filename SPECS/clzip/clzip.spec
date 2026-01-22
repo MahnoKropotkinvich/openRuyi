@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -8,13 +9,15 @@ Name:           clzip
 Version:        1.15
 Release:        %autorelease
 Summary:        Small, stand-alone lzip compressor and decompressor
-License:        GPLv2+ AND BSD-2-Clause
+License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://www.nongnu.org/lzip/clzip.html
+# VCS: No VCS link available
 #!RemoteAsset
-Source0:         https://download.savannah.nongnu.org/releases/lzip/clzip/clzip-%{version}.tar.gz
+Source0:        https://download.savannah.nongnu.org/releases/lzip/clzip/clzip-%{version}.tar.gz
 #!RemoteAsset
-Source1:         https://download.savannah.nongnu.org/releases/lzip/clzip/clzip-%{version}.tar.gz.sig
+Source1:        https://download.savannah.nongnu.org/releases/lzip/clzip/clzip-%{version}.tar.gz.sig
 BuildSystem:    autotools
+
 BuildRequires:  gcc
 BuildRequires:  texinfo
 
