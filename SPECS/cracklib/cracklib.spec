@@ -27,7 +27,8 @@ BuildOption(conf):  --disable-static
 BuildOption(install):  'pythondir=${pyexecdir}'
 
 BuildRequires:  gettext
-BuildRequires:  zlib-devel
+BuildRequires:  pkgconfig(zlib)
+
 # The cracklib-format script calls gzip, but without a specific path.
 Requires:       gzip
 
@@ -51,7 +52,7 @@ CrackLib, you will also want to install the cracklib-dicts package.
 
 %package        devel
 Summary:        Development files needed for building applications which use cracklib
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 The cracklib-devel package contains the header files and libraries needed
@@ -60,9 +61,9 @@ for compiling applications which use cracklib.
 %package        dicts
 Summary:        The standard CrackLib dictionaries
 BuildRequires:  make
-Requires:       cracklib = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description dicts
+%description    dicts
 The cracklib-dicts package includes the CrackLib dictionaries.
 CrackLib will need to use the dictionary appropriate to your system,
 which is normally put in /usr/share/dict/words. Cracklib-dicts also
