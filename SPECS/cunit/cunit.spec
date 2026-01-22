@@ -2,11 +2,13 @@
 # SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 %define _name   CUnit
 %define _version 2.1-3
+
 Name:           cunit
 Version:        2.1.3
 Release:        %autorelease
@@ -15,18 +17,19 @@ License:        LGPL-2.0-only
 URL:            https://cunit.sourceforge.net/
 #!RemoteAsset
 Source:         https://download.sourceforge.net/cunit/%{_name}-%{_version}.tar.bz2
+BuildSystem:    autotools
+
 Patch1:         0001-cunit-link-ncurses.patch
 Patch2:         0002-cunit-ncurses6.patch
 Patch3:         0003-avoid-Wformat-security-bug.patch
-BuildSystem:    autotools
 
-BuildOption(conf):    --disable-static
-BuildOption(conf):    --enable-automated
-BuildOption(conf):    --enable-basic
-BuildOption(conf):    --enable-console
-BuildOption(conf):    --enable-curses
+BuildOption(conf):  --disable-static
+BuildOption(conf):  --enable-automated
+BuildOption(conf):  --enable-basic
+BuildOption(conf):  --enable-console
+BuildOption(conf):  --enable-curses
 # Patch3 avoid the potential bug but can't avoid -Werror=format-security.
-BuildOption(conf):    CFLAGS='%{build_cflags} -Wno-format-security'
+BuildOption(conf):  CFLAGS='%{build_cflags} -Wno-format-security'
 
 BuildRequires:  autoconf
 BuildRequires:  automake
