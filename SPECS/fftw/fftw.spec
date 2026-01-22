@@ -1,15 +1,18 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 %global prec_names prec_name[0]=single;prec_name[1]=double;prec_name[2]=long;prec_name[3]=quad
-%ifarch x64
+
+%ifarch x86_64
 %global nprec 4
 %else
 %global nprec 3
 %endif
+
 Name:           fftw
 Version:        3.3.10
 Release:        %autorelease
@@ -24,7 +27,7 @@ BuildRequires:  make
 BuildRequires:  libtool
 BuildRequires:  autoconf
 BuildRequires:  automake
-%ifarch x64
+%ifarch x86_64
 BuildRequires:  libquadmath-devel
 %endif
 
