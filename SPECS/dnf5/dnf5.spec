@@ -15,7 +15,7 @@ URL:            https://github.com/rpm-software-management/dnf5
 #!RemoteAsset:  sha256:c7e744773dd300e539cd5285344810a9aee4c934f716722c42cafc383945b0e8
 Source0:        https://github.com/rpm-software-management/dnf5/archive/%{version}/dnf5-%{version}.tar.gz
 BuildSystem:    cmake
-Provides:       dnf
+
 BuildOption(conf):  -DVERSION_PRIME:STRING=5
 BuildOption(conf):  -DVERSION_MAJOR:STRING=3
 BuildOption(conf):  -DVERSION_MINOR:STRING=0
@@ -57,8 +57,10 @@ BuildRequires:  libcurl-devel
 BuildRequires:  swig
 BuildRequires:  python3-devel
 
-Requires:       libdnf5 = %{version}
-Requires:       libdnf5-cli = %{version}
+Provides:       dnf
+
+Requires:       libdnf5%{?_isa} = %{version}-%{release}
+Requires:       libdnf5-cli%{?_isa} = %{version}-%{release}
 Requires:       coreutils
 
 %description
@@ -67,48 +69,51 @@ upgrading, configuring, and removing computer programs in a consistent manner.
 
 %package     -n libdnf5
 Summary:        Package management library
-Requires:       libsolv >= 0.7.25
-Requires:       librepo >= 1.20.0
-Requires:       sqlite >= 3.35.0
+Requires:       libsolv
+Requires:       librepo
+Requires:       sqlite
 
 %description -n libdnf5
 Package management library.
 
 %package     -n libdnf5-cli
 Summary:        Library for terminal interactions in dnf5
-Requires:       libdnf5 = %{version}
+Requires:       libdnf5%{?_isa} = %{version}-%{release}
 
 %description -n libdnf5-cli
 Library for working with a terminal in a command-line package manager.
 
-%package plugins
+%package        plugins
 Summary:        Core plugins for dnf5
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       curl
 
-%description plugins
+%description    plugins
 Core DNF5 plugins that enhance dnf5 with commands like builddep, config-manager, copr, etc.
 
 %package     -n python-libdnf5
 Summary:        Python bindings for the libdnf5 library
+%python_provide python3-libdnf5
 Provides:       python3-libdnf5
-Requires:       libdnf5 = %{version}-%{release}
+Requires:       libdnf5%{?_isa} = %{version}-%{release}
 
 %description -n python-libdnf5
 Python bindings for the libdnf library.
 
 %package     -n python-libdnf5-cli
 Summary:        Python bindings for the libdnf5-cli library
+%python_provide python3-libdnf5-cli
 Provides:       python3-libdnf5-cli
-Requires:       libdnf5-cli = %{version}-%{release}
+Requires:       libdnf5-cli%{?_isa} = %{version}-%{release}
 
 %description -n python-libdnf5-cli
 Python bindings for the libdnf5-cli library.
 
 %package     -n python-libdnf5-python-plugins-loader
 Summary:        Libdnf5 plugin that allows loading Python plugins
+%python_provide python3-libdnf5-python-plugins-loader
 Provides:       python3-libdnf5-python-plugins-loader
-Requires:       libdnf5 = %{version}-%{release}
+Requires:       libdnf5%{?_isa} = %{version}-%{release}
 Requires:       python3-libdnf5 = %{version}-%{release}
 
 %description -n python-libdnf5-python-plugins-loader
@@ -116,12 +121,12 @@ Libdnf5 plugin that allows loading Python plugins.
 
 %package        devel
 Summary:        Development files for dnf5, libdnf5 and libdnf5-cli
-Requires:       %{name} = %{version}
-Requires:       libdnf5 = %{version}
-Requires:       libdnf5-cli = %{version}
-Requires:       libsolv-devel >= 0.7.25
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       libdnf5%{?_isa} = %{version}-%{release}
+Requires:       libdnf5-cli%{?_isa} = %{version}-%{release}
+Requires:       pkgconfig(libsolv)
 
-%description devel
+%description    devel
 Development files for dnf5.
 
 %install -a
