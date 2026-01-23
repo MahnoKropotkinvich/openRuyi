@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -14,15 +15,18 @@ URL:            https://github.com/libass/libass
 Source:         https://github.com/libass/libass/archive/refs/tags/%{version}.tar.gz
 BuildSystem:    autotools
 
-BuildOption(conf): --disable-silent-rules
-BuildOption(conf): --disable-static
+BuildOption(conf):  --disable-silent-rules
+BuildOption(conf):  --disable-static
 
-BuildRequires:  nasm libtool autoconf automake
+BuildRequires:  nasm
+BuildRequires:  libtool
+BuildRequires:  autoconf
+BuildRequires:  automake
 BuildRequires:  pkgconfig
-BuildRequires:  pkgconfig(fontconfig) >= 2.10.92
-BuildRequires:  pkgconfig(freetype2) >= 9.10.3
-BuildRequires:  pkgconfig(fribidi) >= 0.19.0
-BuildRequires:  pkgconfig(harfbuzz) >= 1.2.3
+BuildRequires:  pkgconfig(fontconfig)
+BuildRequires:  pkgconfig(freetype2)
+BuildRequires:  pkgconfig(fribidi)
+BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libunibreak)
 
 %description
@@ -32,14 +36,14 @@ subtitle format. This is a metapackage that requires the runtime library.
 %package        devel
 Summary:        Development files for libass, a subtitle rendering library
 Requires:       glibc-devel
-Requires:       %{name}%{?_isa} = %{version}
-Requires:       pkgconfig(fontconfig) >= 2.10.92
-Requires:       pkgconfig(freetype2) >= 9.10.3
-Requires:       pkgconfig(fribidi) >= 0.19.0
-Requires:       pkgconfig(harfbuzz) >= 1.2.3
-Requires:       pkgconfig(libunibreak) >= 1.1
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       pkgconfig(fontconfig)
+Requires:       pkgconfig(freetype2)
+Requires:       pkgconfig(fribidi)
+Requires:       pkgconfig(harfbuzz)
+Requires:       pkgconfig(libunibreak)
 
-%description devel
+%description    devel
 This package contains the header files and libraries needed to develop
 applications that use the libass library.
 
