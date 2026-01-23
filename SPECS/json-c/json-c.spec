@@ -7,6 +7,7 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 %define version_date 20240915
+
 Name:           json-c
 Version:        0.18
 Release:        %autorelease
@@ -17,13 +18,13 @@ URL:            https://github.com/json-c/json-c
 Source0:        https://github.com/json-c/json-c/archive/json-c-%{version}-%{version_date}.tar.gz
 BuildSystem:    cmake
 
-BuildOption(conf):    -DCMAKE_INSTALL_PREFIX=%{_prefix}
-BuildOption(conf):    -DENABLE_THREADING=ON
-BuildOption(conf):    -DENABLE_RDRAND=ON
-BuildOption(conf):    -DBUILD_STATIC_LIBS=ON
-BuildOption(conf):    -DBUILD_SHARED_LIBS=ON
+BuildOption(conf):  -DCMAKE_INSTALL_PREFIX=%{_prefix}
+BuildOption(conf):  -DENABLE_THREADING=ON
+BuildOption(conf):  -DENABLE_RDRAND=ON
+BuildOption(conf):  -DBUILD_STATIC_LIBS=ON
+BuildOption(conf):  -DBUILD_SHARED_LIBS=ON
 # The json-c declaration depends on an outdated version of cmake.
-BuildOption(conf):    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+BuildOption(conf):  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 BuildRequires:  cmake
 BuildRequires:  libtool
@@ -37,7 +38,7 @@ and documentation.
 
 %package        devel
 Summary:        Development headers and libraries for json-c
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package includes header files, static libraries, and other files
