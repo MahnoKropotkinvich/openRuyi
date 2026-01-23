@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,6 +12,7 @@ Release:        %autorelease
 Summary:        Text File Browser and Pager Similar to more
 License:        BSD-2-Clause OR GPL-3.0-or-later
 URL:            https://www.greenwoodsoftware.com/less/
+VCS:            git:https://github.com/gwsw/less
 #!RemoteAsset
 Source0:        https://ftpmirror.gnu.org/gnu/less/less-%{version}.tar.gz
 BuildSystem:    autotools
@@ -18,7 +20,7 @@ BuildSystem:    autotools
 BuildOption(check):  LIBS="-lncurses -ltinfo"
 
 BuildRequires:  automake
-BuildRequires:  ncurses-devel
+BuildRequires:  pkgconfig(ncurses)
 BuildRequires:  pkgconfig
 
 %description
