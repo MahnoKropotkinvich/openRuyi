@@ -3,6 +3,7 @@
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: laokz <zhangkai@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -16,8 +17,14 @@ URL:            https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutil
 Source:         https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/snapshot/%{name}-%{version}.tar.gz
 BuildSystem:    autotools
 
-BuildOption(build):  NO_ARLIB=1 CFLAGS="%{optflags}"
-BuildOption(install):  NO_ARLIB=1 DESTDIR=%{buildroot} BINDIR=%{_bindir} SBINDIR=%{_sbindir} LIBDIR=%{_libdir} USRLIBDIR=%{_libdir}
+BuildOption(build):  NO_ARLIB=1
+BuildOption(build):  CFLAGS="%{optflags}"
+BuildOption(install):  NO_ARLIB=1
+BuildOption(install):  DESTDIR=%{buildroot}
+BuildOption(install):  BINDIR=%{_bindir}
+BuildOption(install):  SBINDIR=%{_sbindir}
+BuildOption(install):  LIBDIR=%{_libdir}
+BuildOption(install):  USRLIBDIR=%{_libdir}
 
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
@@ -27,7 +34,7 @@ Utilities to control the kernel key management facility.
 This package contains the command-line tools and runtime libraries.
 
 %package        devel
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Summary:        Development package for building linux key management utilities
 
 %description    devel
