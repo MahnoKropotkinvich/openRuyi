@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Jingwiw <wangjingwei@iscas.ac.cn>
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,14 +12,14 @@ Release:       %autorelease
 Summary:       A library for hardware RNG based on CPU timing jitter
 License:       BSD-3-Clause OR GPL-2.0-only
 URL:           https://www.chronox.de/jent/
+VCS:           git:https://github.com/smuellerDD/jitterentropy-library
 #!RemoteAsset
 Source0:       https://www.chronox.de/jent/releases/%{version}/%{name}-library-%{version}.tar.xz
-
 BuildSystem:   autotools
 
-BuildOption(build):     LDFLAGS="-lpthread"
-BuildOption(install):   PREFIX=%{_prefix}
-BuildOption(install):   LIBDIR=%{_lib}
+BuildOption(build):  LDFLAGS="-lpthread"
+BuildOption(install):  PREFIX=%{_prefix}
+BuildOption(install):  LIBDIR=%{_lib}
 
 BuildRequires:  gcc
 BuildRequires:  make
@@ -27,11 +28,11 @@ BuildRequires:  make
 The Jitter RNG provides a noise source using the CPU execution timing jitter.
 This package contains the runtime shared library needed by applications.
 
-%package devel
-Summary:       Development files for the jitterentropy library
-Requires:      %{name}%{?_isa} = %{version}-%{release}
+%package        devel
+Summary:        Development files for the jitterentropy library
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 This package contains the header files, development symlinks, and static
 library for compiling applications that use the jitterentropy library.
 
