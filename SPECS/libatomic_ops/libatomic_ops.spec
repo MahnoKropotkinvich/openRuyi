@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -14,7 +15,8 @@ URL:            https://github.com/ivmai/libatomic_ops
 #!RemoteAsset
 Source:         https://github.com/ivmai/libatomic_ops/releases/download/v%{version}/%{name}-%{version}.tar.gz
 BuildSystem:    autotools
-BuildOption(conf):    --docdir=%{_docdir}/%{name}
+
+BuildOption(conf):  --docdir=%{_docdir}/%{name}
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -28,16 +30,15 @@ portable code. Unlike earlier similar packages, this one explicitly
 considers memory barrier semantics, and allows the construction of code
 that involves minimum overhead across a variety of architectures.
 
-%package devel
+%package        devel
 Summary:        A portable library for atomic memory operations
 
-%description devel
+%description    devel
 Provides implementations for atomic memory update operations on a
 number of architectures. This allows direct use of these in reasonably
 portable code. Unlike earlier similar packages, this one explicitly
 considers memory barrier semantics, and allows the construction of code
 that involves minimum overhead across a variety of architectures.
-
 
 %build -p
 %global _lto_cflags %{_lto_cflags} -ffat-lto-objects
