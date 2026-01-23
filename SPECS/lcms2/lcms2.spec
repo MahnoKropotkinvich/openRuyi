@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -14,13 +15,13 @@ URL:            https://github.com/mm2/Little-CMS
 Source:         https://github.com/mm2/Little-CMS/archive/refs/tags/lcms%{version}.tar.gz
 BuildSystem:    meson
 
-BuildOption(conf): -Dutils=true
+BuildOption(conf):  -Dutils=true
 
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libtiff-4)
-BuildRequires:  zlib-devel
+BuildRequires:  pkgconfig(zlib)
 
 %description
 LittleCMS intends to be a small-footprint, speed optimized color management
@@ -29,8 +30,7 @@ This package contains the shared library.
 
 %package        devel
 Summary:        Development files for LittleCMS
-Requires:       %{name}%{?_isa} = %{version}
-Provides:       littlecms-devel = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 Development files for LittleCMS. This package contains headers and libraries
