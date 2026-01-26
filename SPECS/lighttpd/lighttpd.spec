@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -19,6 +20,7 @@ Release:        %autorelease
 Summary:        Lightning fast webserver with light system requirements
 License:        BSD-3-Clause
 URL:            http://www.lighttpd.net/
+VCS:            git:https://git.lighttpd.net/lighttpd/lighttpd1.4.git
 #!RemoteAsset
 Source0:        http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-%{version}.tar.xz
 Source1:        lighttpd.logrotate
