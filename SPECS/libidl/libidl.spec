@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,12 +12,13 @@ Release:        %autorelease
 Summary:        Library for parsing IDL (Interface Definition Language)
 License:        LGPL-2.0-or-later AND GPL-3.0-or-later
 URL:            https://download.gnome.org/sources/libIDL/0.8/
+VCS:            git:https://gitlab.gnome.org/Archive/libidl.git
 #!RemoteAsset
 Source0:        https://download.gnome.org/sources/libIDL/0.8/libIDL-%{version}.tar.bz2
 Source1:        libIDL-config-2.1
 BuildSystem:    autotools
 
-BuildOption(conf): --disable-static
+BuildOption(conf):  --disable-static
 
 BuildRequires:  gcc
 BuildRequires:  make
@@ -34,8 +36,8 @@ projects like ORBit2. It can be used for both COM-style and CORBA-style IDL.
 
 %package        devel
 Summary:        Development files for libIDL
-Requires:       %{name} = %{version}
-Requires:       glib-devel
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       pkgconfig(glib-2.0)
 
 %description    devel
 This package contains the header files, libraries, documentation, and tools
