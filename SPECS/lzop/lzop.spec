@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,11 +12,12 @@ Release:        %autorelease
 Summary:        A fast LZ-based file compressor
 License:        GPL-2.0-or-later
 URL:            https://www.lzop.org/
+# VCS: No VCS link available
 #!RemoteAsset
 Source:         https://www.lzop.org/download/lzop-%{version}.tar.gz
 BuildSystem:    cmake
 
-BuildOption(conf): -DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+BuildOption(conf):  -DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 
 BuildRequires:  cmake
 BuildRequires:  pkgconfig
