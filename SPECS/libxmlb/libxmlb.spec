@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -19,15 +20,14 @@ Source:         https://github.com/hughsie/libxmlb/archive/refs/tags/%{version}.
 BuildSystem:    meson
 
 %if %{with doc}
-BuildOption(conf): -Dgtkdoc=true
+BuildOption(conf):  -Dgtkdoc=true
 %else
-BuildOption(conf): -Dgtkdoc=false
+BuildOption(conf):  -Dgtkdoc=false
 %endif
-
 %if %{with tests}
-BuildOption(conf): -Dtests=true
+BuildOption(conf):  -Dtests=true
 %else
-BuildOption(conf): -Dtests=false
+BuildOption(conf):  -Dtests=false
 %endif
 
 BuildRequires:  meson
@@ -36,15 +36,12 @@ BuildRequires:  glib-devel
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(libzstd)
-
 %if %{with stemmer}
 BuildRequires:  libstemmer-devel
 %endif
-
 %if %{with doc}
 BuildRequires:  gtk-doc
 %endif
-
 %if %{with tests}
 BuildRequires:  shared-mime-info
 %endif
