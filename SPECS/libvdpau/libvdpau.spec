@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -12,15 +13,16 @@ License:        MIT
 URL:            https://gitlab.freedesktop.org/vdpau/libvdpau
 #!RemoteAsset
 Source:         https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/%{version}/libvdpau-%{version}.tar.bz2
-Patch:          0001-libvdpau-av1-trace.patch
 BuildSystem:    meson
 
-BuildOption(conf): -Ddocumentation=false
+Patch0:         0001-libvdpau-av1-trace.patch
+
+BuildOption(conf):  -Ddocumentation=false
 
 BuildRequires:  meson >= 0.41
 BuildRequires:  doxygen
 BuildRequires:  gcc-c++
-BuildRequires:  libX11-devel
+BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xext)
 
@@ -31,7 +33,7 @@ modern GPUs.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{_isa} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig(x11)
 
 %description    devel
