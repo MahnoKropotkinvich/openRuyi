@@ -28,7 +28,7 @@ named ndptool for sending and receiving NDP messages.
 
 %package        devel
 Summary:        Libraries and header files for libndp development
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 The libndp-devel package contains the header files and libraries
