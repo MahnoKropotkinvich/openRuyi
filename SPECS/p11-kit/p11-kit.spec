@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,14 +12,15 @@ Release:        %autorelease
 Summary:        Library and tools for working with PKCS#11 modules
 License:        BSD-3-Clause
 URL:            https://p11-glue.freedesktop.org/p11-kit.html
+VCS:            git:https://github.com/p11-glue/p11-kit
 #!RemoteAsset
 Source:         https://github.com/p11-glue/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz
 BuildSystem:    meson
 
-BuildOption:    -Dtrust_paths=%{_sysconfdir}/pki/trust:%{_datadir}/pki/trust
-BuildOption:    -Dbash_completion=disabled
-BuildOption:    -Dgtk_doc=false
-BuildOption:    -Dman=false
+BuildOption(conf):  -Dtrust_paths=%{_sysconfdir}/pki/trust:%{_datadir}/pki/trust
+BuildOption(conf):  -Dbash_completion=disabled
+BuildOption(conf):  -Dgtk_doc=false
+BuildOption(conf):  -Dman=false
 
 BuildRequires:  meson
 BuildRequires:  python3
@@ -27,7 +29,7 @@ BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(libffi) >= 3.0.0
 BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:  pkgconfig(systemd)
-BuildRequires:  libtasn1-devel
+BuildRequires:  pkgconfig(libtasn1)
 
 %description
 p11-kit provides a way to load and enumerate PKCS#11 modules, as well
@@ -35,14 +37,13 @@ as a standard configuration setup for installing PKCS#11 modules in
 such a way that they're discoverable. This package contains the runtime
 libraries, tools, and server components.
 
-%package devel
+%package        devel
 Summary:        Development files for the p11-kit library
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 This package contains the header files and pkg-config files needed to
 develop applications that use p11-kit.
-
 
 %install -a
 install -d -m 755 %{buildroot}%{_sysconfdir}/pkcs11/modules
