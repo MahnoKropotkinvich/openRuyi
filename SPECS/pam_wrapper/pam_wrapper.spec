@@ -11,6 +11,7 @@ Release:        %autorelease
 Summary:        A tool to test PAM applications and PAM modules
 License:        GPL-3.0-or-later
 URL:            http://cwrap.org/
+VCS:            git:https://git.samba.org/pam_wrapper.git
 #!RemoteAsset
 Source0:        https://ftp.samba.org/pub/cwrap/%{name}-%{version}.tar.gz
 #!RemoteAsset
@@ -23,9 +24,9 @@ BuildOption(conf):  -DPYTHON_INSTALL_SITEARCH=%{python3_sitearch}
 
 BuildRequires:  cmake
 BuildRequires:  cmocka-cmake
-BuildRequires:  python3-devel
+BuildRequires:  pkgconfig(python3)
 BuildRequires:  python3-setuptools
-BuildRequires:  pam-devel
+BuildRequires:  pkgconfig(pam)
 
 Recommends:     cmake
 Recommends:     pkgconfig
@@ -55,7 +56,6 @@ Summary:        A tool to test PAM applications and PAM modules
 License:        GPL-3.0-or-later
 Requires:       pam_wrapper = %{version}-%{release}
 Requires:       libpamtest = %{version}-%{release}
-
 Recommends:     cmake
 Recommends:     pkgconfig
 
@@ -64,13 +64,15 @@ If you plan to develop tests for a PAM module you can use this library,
 which simplifies testing of modules. This sub package includes the header
 files for libpamtest.
 
-%package     -n python3-libpamtest
+%package     -n python-libpamtest
 Summary:        A python wrapper for libpamtest
 License:        GPL-3.0-or-later
+Provides:       python3-libpamtest
+%python_provide python3-libpamtest
 Requires:       pam_wrapper = %{version}-%{release}
 Requires:       libpamtest = %{version}-%{release}
 
-%description -n python3-libpamtest
+%description -n python-libpamtest
 If you plan to develop python tests for a PAM module you can use this
 Python module to quickly write tests in Python
 
@@ -108,7 +110,7 @@ sed -i -e 's/assertRaisesRegexp/assertRaisesRegex/' tests/pypamtest_test.py
 %{_libdir}/cmake/pamtest/pamtest-config.cmake
 %{_includedir}/libpamtest.h
 
-%files -n python3-libpamtest
+%files -n python-libpamtest
 %{python3_sitearch}/pypamtest.so
 
 %changelog
