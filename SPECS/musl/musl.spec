@@ -2,40 +2,38 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: ayostl <yao_xp@yeah.net>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-%global         _musl_target_cpu %{_target_cpu}
-%global         _musl_platform %{_musl_target_cpu}-linux-musl
+%global _musl_target_cpu %{_target_cpu}
+%global _musl_platform %{_musl_target_cpu}-linux-musl
 
-%global         _libdir %{_prefix}/lib/%{_musl_platform}
-%global         _includedir %{_prefix}/include/%{_musl_platform}
+%global _libdir %{_prefix}/lib/%{_musl_platform}
+%global _includedir %{_prefix}/include/%{_musl_platform}
 
-%global         _syslibdir /lib
+%global _syslibdir /lib
 
-Name:             musl
-Version:          1.2.5
-Release:            %autorelease
-Summary:          Fully featured lightweight standard C library for Linux
-License:          MIT
-URL:              https://musl.libc.org
+Name:           musl
+Version:        1.2.5
+Release:        %autorelease
+Summary:        Fully featured lightweight standard C library for Linux
+License:        MIT
+URL:            https://musl.libc.org
 #!RemoteAsset
-Source0:          %{url}/releases/%{name}-%{version}.tar.gz
+Source0:        %{url}/releases/%{name}-%{version}.tar.gz
 #!RemoteAsset
-Source1:          %{url}/releases/%{name}-%{version}.tar.gz.asc
+Source1:        %{url}/releases/%{name}-%{version}.tar.gz.asc
+BuildSystem:    autotools
 
 # Support PIE with static linking
-Patch0:                   0001-musl-1.2.0-Support-static-pie-with-musl-gcc-specs.patch
-BuildSystem:  autotools
+Patch0:         0001-musl-1.2.0-Support-static-pie-with-musl-gcc-specs.patch
 
 BuildOption(conf):  --enable-debug
 BuildOption(conf):  --enable-wrapper=all
 
-# musl is only for Linux
-ExclusiveOS:  linux
-
-BuildRequires:        gcc
-BuildRequires:        make
+BuildRequires:  gcc
+BuildRequires:  make
 
 %description
 musl is a C standard library to power a new generation
@@ -44,11 +42,9 @@ free, and strives to be correct in the sense of standards
 conformance and safety.
 
 %package        devel
-Summary:          Development files for %{name}
-
-# This package also provides the headers for using musl
-Provides:         %{name}-headers = %{version}-%{release}
-Requires:         %{name} = %{version}-%{release}
+Summary:        Development files for %{name}
+Provides:       %{name}-headers = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 musl is a C standard library to power a new generation
@@ -60,9 +56,8 @@ This package provides the development files for using
 musl with programs and libraries.
 
 %package        static
-Summary:          Static link library for %{name}
-
-Requires:         %{name}-devel%{?_isa} = %{version}-%{release}
+Summary:        Static link library for %{name}
+Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 
 %description    static
 musl is a C standard library to power a new generation
@@ -74,9 +69,9 @@ This package provides the additional development files for
 statically linking musl into programs and libraries.
 
 %package        gcc
-Summary:          Wrapper for using gcc with musl
-Requires:         %{name}-devel = %{version}-%{release}
-Requires:         gcc
+Summary:        Wrapper for using gcc with musl
+Requires:       %{name}-devel = %{version}-%{release}
+Requires:       gcc
 
 %description    gcc
 musl is a C standard library to power a new generation
@@ -88,9 +83,9 @@ This package provides a wrapper around gcc to compile
 programs and libraries with musl easily.
 
 %package        clang
-Summary:          Wrapper for using clang with musl
-Requires:         %{name}-devel = %{version}-%{release}
-Requires:         clang
+Summary:        Wrapper for using clang with musl
+Requires:       %{name}-devel = %{version}-%{release}
+Requires:       clang
 
 %description    clang
 musl is a C standard library to power a new generation
@@ -100,7 +95,6 @@ conformance and safety.
 
 This package provides a wrapper around clang to compile
 programs and libraries with musl easily.
-
 
 %build -p
 # musl is known not to work with LTO
