@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,6 +12,7 @@ Release:        %autorelease
 Summary:        The GNU disk partition manipulation program
 License:        GPLv3+
 URL:            https://www.gnu.org/software/parted/
+VCS:            git:https://https.git.savannah.gnu.org/git/parted.git
 #!RemoteAsset
 Source0:        https://ftpmirror.gnu.org/gnu/parted/parted-%{version}.tar.xz
 BuildSystem:    autotools
@@ -23,7 +25,7 @@ BuildOption(conf):  --enable-shared
 BuildOption(conf):  --disable-device-mapper
 BuildOption(conf):  --disable-static
 
-BuildRequires:  readline-devel
+BuildRequires:  pkgconfig(readline)
 BuildRequires:  gettext-devel
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -41,7 +43,7 @@ to new hard disks.
 
 %package        devel
 Summary:        Files for developing apps which will manipulate disk partitions
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 The GNU Parted library is a set of routines for hard disk partition
