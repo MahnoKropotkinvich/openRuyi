@@ -25,8 +25,8 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(wheel)
 BuildRequires:  python3dist(pytest)
 
-Provides:       python3-%{pyname}
-%python_provide python3-%{pyname}
+Provides:       python3-%{srcname}
+%python_provide python3-%{srcname}
 
 %description
 This is a Python library of web-related functions, such as removing comments,
