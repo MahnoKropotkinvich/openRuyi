@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: jingyupu <pujingyu@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,17 +12,18 @@ Release:        %autorelease
 Summary:        XCB utility modules
 License:        MIT
 URL:            https://xcb.freedesktop.org/
-VCS:	        git:git://anongit.freedesktop.org/xcb/util
+VCS:	        git:https://gitlab.freedesktop.org/xorg/lib/libxcb-util.git
 #!RemoteAsset
 Source:         https://xcb.freedesktop.org/dist/xcb-util-%{version}.tar.xz
+BuildSystem:    autotools
+
+BuildOption(conf):  --disable-static
+
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(xcb) >= 1.4
 BuildRequires:  pkgconfig(xproto) >= 7.0.8
-BuildSystem:    autotools
-
-BuildOption(conf):  --disable-static
 
 %description
 The XCB util modules provide a number of libraries which sit on top
@@ -37,11 +39,11 @@ Included in this package are:
 - aux: Convenient access to connection setup and some core requests.
 - event: Callback X event handling.
 
-%package devel
+%package        devel
 Summary:        Development files for the XCB utility modules
-Requires:       %{name}%{?_isa} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 The XCB util modules provide a number of libraries which sit on top
 of libxcb, the core X protocol library, and some of the extension
 libraries. These experimental libraries provide convenience functions
