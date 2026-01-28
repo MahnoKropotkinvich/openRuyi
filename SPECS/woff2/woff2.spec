@@ -38,7 +38,7 @@ documents by means of CSS @font-face rules.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 Development files and utils for %{name}
