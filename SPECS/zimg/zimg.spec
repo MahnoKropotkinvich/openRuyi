@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -12,11 +13,12 @@ License:        WTFPL
 URL:            https://github.com/sekrit-twc/zimg
 #!RemoteAsset
 Source:         https://github.com/sekrit-twc/zimg/archive/refs/tags/release-%{version}.tar.gz
-Patch:          0001-fix-build.patch
 BuildSystem:    autotools
 
-BuildOption(conf): --disable-static
-BuildOption(conf): --enable-testapp
+Patch0:         0001-fix-build.patch
+
+BuildOption(conf):  --disable-static
+BuildOption(conf):  --enable-testapp
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -30,7 +32,7 @@ scaling, color space conversion, and depth conversion.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
