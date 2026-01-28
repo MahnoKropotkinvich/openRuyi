@@ -34,7 +34,7 @@ BuildOption(install):  DATATARGETDIR="%{_datadir}/shim" EFIDIR=%{_vendor} instal
 
 BuildRequires:  efi-filesystem
 BuildRequires:  efi-srpm-macros
-BuildRequires:  libelf-devel
+BuildRequires:  pkgconfig(libelf)
 BuildRequires:  make
 # This is a placeholder requires, we don't actually use it now - 251
 BuildRequires:  pesign
