@@ -12,7 +12,7 @@ Version:        2.11.1
 Release:        %autorelease
 Summary:        System Security Services Daemon
 License:        GPL-3.0-or-later
-URL:            https://github.com/SSSD/sssd/
+URL:            https://github.com/SSSD/sssd
 #!RemoteAsset
 Source0:        %{url}/releases/download/%{version}/%{name}-%{version}.tar.gz
 #!RemoteAsset
@@ -43,8 +43,8 @@ BuildRequires:  docbook-style-dsssl
 BuildRequires:  libunistring-devel
 BuildRequires:  libxml2
 BuildRequires:  libxslt
-BuildRequires:  openssl-devel
-BuildRequires:  python3-devel
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(python3)
 BuildRequires:  python3-setuptools
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  pkgconfig(augeas)
