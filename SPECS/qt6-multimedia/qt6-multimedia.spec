@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -16,6 +17,7 @@ Release:        %autorelease
 Summary:        Qt6 - Multimedia support
 License:        LGPL-3.0-only OR GPL-3.0-only WITH Qt-GPL-exception-1.0
 URL:            https://www.qt.io
+VCS:            git:https://code.qt.io/qt/qtmultimedia.git
 #!RemoteAsset
 Source0:        https://download.qt.io/official_releases/qt/%{short_version}/%{real_version}/submodules/%{qt_module}-everywhere-src-%{real_version}.tar.xz
 BuildSystem:    cmake
@@ -32,9 +34,9 @@ BuildOption(conf):  -DFEATURE_ffmpeg=OFF
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  qt6-macros
-BuildRequires:  qt6-base-devel >= %{version}
+BuildRequires:  pkgconfig(Qt6Core) >= %{version}
 BuildRequires:  qt6-base-private-devel
-BuildRequires:  qt6-declarative-devel >= %{version}
+BuildRequires:  pkgconfig(Qt6Quick) >= %{version}
 BuildRequires:  pkgconfig(Qt6ShaderTools) >= %{version}
 BuildRequires:  pkgconfig(Qt6Quick3D) >= %{version}
 BuildRequires:  pkgconfig(alsa)
@@ -55,9 +57,9 @@ easily take advantage of a platforms multimedia capabilites and hardware.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       qt6-base-devel
-Requires:       qt6-declarative-devel
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       pkgconfig(Qt6Core)
+Requires:       pkgconfig(Qt6Quick)
 Requires:       pkgconfig(libpulse-mainloop-glib)
 
 %description    devel
@@ -65,7 +67,7 @@ Development files for %{name}.
 
 %package        examples
 Summary:        Programming examples for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    examples
 Programming examples for %{name}.
