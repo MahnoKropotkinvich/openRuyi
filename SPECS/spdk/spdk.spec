@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: sunyuechi <sunyuechi@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -10,24 +11,22 @@ Release:        %autorelease
 Summary:        Set of libraries and utilities for high performance user-mode storage
 License:        BSD and MIT
 URL:            http://spdk.io
+VCS:            git:https://github.com/spdk/spdk
 #!RemoteAsset
 Source0:        https://github.com/spdk/spdk/archive/refs/tags/v%{version}.tar.gz
-
 BuildSystem:    autotools
 
-BuildOption(install): libdir=%{_libdir}
-
-%define package_version %{version}-%{release}
+BuildOption(install):  libdir=%{_libdir}
 
 BuildRequires:  make
-BuildRequires:  dpdk-devel
-BuildRequires:  numactl-devel
-BuildRequires:  ncurses-devel
-BuildRequires:  libaio-devel
-BuildRequires:  openssl-devel
+BuildRequires:  pkgconfig(libdpdk)
+BuildRequires:  pkgconfig(numa)
+BuildRequires:  pkgconfig(ncurses)
+BuildRequires:  pkgconfig(libaio)
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  fuse3
-BuildRequires:  fuse3-devel
-BuildRequires:  python-devel
+BuildRequires:  pkgconfig(fuse3)
+BuildRequires:  pkgconfig(python3)
 BuildRequires:  python-pip
 BuildRequires:  python-setuptools
 BuildRequires:  python-wheel
@@ -53,8 +52,8 @@ applications.
 
 %package        devel
 Summary:        Storage Performance Development Kit development files
-Requires:       %{name}%{?_isa} = %{package_version}
-Provides:       %{name}-static%{?_isa} = %{package_version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Provides:       %{name}-static%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package contains the headers and other files needed for
@@ -62,7 +61,7 @@ developing applications with the Storage Performance Development Kit.
 
 %package        static
 Summary:        Storage Performance Development Kit static libraries
-Requires:       %{name}-devel%{?_isa} = %{package_version}
+Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 
 %description    static
 This package contains the static libraries for the Storage Performance
@@ -70,7 +69,7 @@ Development Kit.
 
 %package        tools
 Summary:        Storage Performance Development Kit tools files
-Requires:       %{name} = %{package_version}
+Requires:       %{name} = %{version}-%{release}
 BuildArch:      noarch
 
 %description    tools
@@ -83,12 +82,12 @@ export CC="gcc -fuse-ld=bfd"
 export CXX="g++ -fuse-ld=bfd"
 
 ./configure --prefix=%{_usr} \
-	--libdir=%{_libdir} \
-	--with-dpdk \
-	--disable-examples \
-	--disable-tests \
-	--disable-unit-tests \
-	--with-shared
+    --libdir=%{_libdir} \
+    --with-dpdk \
+    --disable-examples \
+    --disable-tests \
+    --disable-unit-tests \
+    --with-shared
 
 %install -p
 find . -name "*.mk" -o -name "Makefile" | xargs sed -i 's/pip install/pip install --no-build-isolation/g'
@@ -110,7 +109,7 @@ install -Dm644 LICENSE %{buildroot}%{_datadir}/licenses/%{name}/LICENSE
 # Install tools
 mkdir -p %{buildroot}%{_datadir}/%{name}
 find scripts -type f -regextype egrep -regex '.*(spdkcli|rpc).*[.]py' \
-	-exec cp --parents -t %{buildroot}%{_datadir}/%{name} {} ";"
+    -exec cp --parents -t %{buildroot}%{_datadir}/%{name} {} ";"
 
 # no tests
 %check
