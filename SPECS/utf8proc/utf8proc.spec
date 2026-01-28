@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: ayostl <yao_xp@yeah.net>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,8 +12,9 @@ Release:        %autorelease
 Summary:        Library for processing UTF-8 encoded Unicode strings
 License:        MIT AND Unicode-DFS-2015
 URL:            https://julialang.org/utf8proc/
+VCS:            git:https://github.com/JuliaLang/utf8proc
 #!RemoteAsset
-Source0:         https://github.com/JuliaLang/utf8proc/archive/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
+Source0:        https://github.com/JuliaLang/utf8proc/archive/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
 BuildSystem:    autotools
 
 BuildOption(build):  CFLAGS="%{optflags}"
@@ -39,7 +41,6 @@ Summary:        Header files, libraries and development documentation for %{name
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
-
 Contains header files for developing applications that use the %{name}
 library.
 
