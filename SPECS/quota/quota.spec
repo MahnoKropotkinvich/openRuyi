@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Yafen Fang <yafen@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -10,27 +11,29 @@ Release:        %autorelease
 Summary:        Linux Diskquota system as part of the Linux kernel
 License:        GPL-2.0-only AND GPL-2.0-or-later
 URL:            https://sourceforge.net/projects/linuxquota/
+VCS:            git:https://git.code.sf.net/p/linuxquota/code
 #!RemoteAsset
 Source0:        https://downloads.sourceforge.net/linuxquota/%{name}-%{version}.tar.gz
-Source1:    quota_nld.service
-Source2:    quota_nld.sysconfig
-Source3:    rpc-rquotad.service
-Source4:    rpc-rquotad.sysconfig
-Patch0:     quota-4.06-warnquota-configuration-tunes.patch
-Patch1:     quota-4.03-Validate-upper-bound-of-RPC-port.patch
-
+Source1:        quota_nld.service
+Source2:        quota_nld.sysconfig
+Source3:        rpc-rquotad.service
+Source4:        rpc-rquotad.sysconfig
 BuildSystem:    autotools
-BuildOption(conf): --enable-bsd-behaviour
-BuildOption(conf): --enable-ext2direct=yes
-BuildOption(conf): --enable-ldapmail=yes
-BuildOption(conf): --disable-libwrap
-BuildOption(conf): --enable-netlink=yes
-BuildOption(conf): --enable-nls
-BuildOption(conf): --disable-rpath
-BuildOption(conf): --enable-rpc=yes
-BuildOption(conf): --enable-rpcsetquota=yes
-BuildOption(conf): --disable-silent-rules
-BuildOption(conf): --disable-xfs-roothack
+
+Patch0:         quota-4.06-warnquota-configuration-tunes.patch
+Patch1:         quota-4.03-Validate-upper-bound-of-RPC-port.patch
+
+BuildOption(conf):  --enable-bsd-behaviour
+BuildOption(conf):  --enable-ext2direct=yes
+BuildOption(conf):  --enable-ldapmail=yes
+BuildOption(conf):  --disable-libwrap
+BuildOption(conf):  --enable-netlink=yes
+BuildOption(conf):  --enable-nls
+BuildOption(conf):  --disable-rpath
+BuildOption(conf):  --enable-rpc=yes
+BuildOption(conf):  --enable-rpcsetquota=yes
+BuildOption(conf):  --disable-silent-rules
+BuildOption(conf):  --disable-xfs-roothack
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -41,7 +44,7 @@ BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  e2fsprogs
 BuildRequires:  gettext-devel
-BuildRequires:  openldap-devel
+BuildRequires:  pkgconfig(ldap)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libnl-3.0) >= 3.1
 BuildRequires:  pkgconfig(libnl-genl-3.0)
@@ -51,10 +54,10 @@ BuildRequires:  pkgconfig(ext2fs)
 BuildRequires:  systemd-rpm-macros
 
 Requires:       rpcbind
-Requires:       libtirpc-devel
+Requires:       pkgconfig(libtirpc)
 
-Requires(post):    systemd
-Requires(preun):   systemd
+Requires(post):  systemd
+Requires(preun):  systemd
 Requires(postun):  systemd
 
 %description
@@ -64,7 +67,7 @@ and limiting user and or group disk usage per file system.
 %package        devel
 Summary:        Development files for quota RPC
 License:        GPL-2.0-only
-Requires:       quota%{?_isa}  = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package contains development header files for implementing disk quotas
@@ -72,7 +75,7 @@ on remote machines.
 
 %package        help
 Summary:        Additional documentation for disk quotas
-Requires:       quota%{?_isa}  = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 BuildArch:      noarch
 
 %description    help
