@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -25,10 +26,10 @@ BuildOption(conf):  -DQT_INSTALL_EXAMPLES_SOURCES:BOOL=ON
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  qt6-macros
-BuildRequires:  qt6-base-devel >= %{version}
+BuildRequires:  pkgconfig(Qt6Core) >= %{version}
 BuildRequires:  qt6-base-private-devel
-BuildRequires:  qt6-multimedia-devel >= %{version}
-BuildRequires:  qt6-declarative-devel >= %{version}
+BuildRequires:  pkgconfig(Qt6Multimedia) >= %{version}
+BuildRequires:  pkgconfig(Qt6Quick) >= %{version}
 BuildRequires:  pkgconfig(speech-dispatcher)
 BuildRequires:  flite-devel
 
@@ -39,14 +40,14 @@ such as text-to-speech.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-base-devel
+Requires:       pkgconfig(Qt6Core)
 
 %description    devel
 Development files for %{name}.
 
 %package        examples
 Summary:        Programming examples for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    examples
 Programming examples for %{name}.
