@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -21,7 +22,6 @@ BuildOption(conf):  -DSDL_DEPS_SHARED=ON
 BuildOption(conf):  -DSDL_SSE3=OFF
 BuildOption(conf):  -DSDL_RPATH=OFF
 BuildOption(conf):  -DSDL_UNIX_CONSOLE_BUILD=ON
-
 %if %{with static}
 BuildOption(conf):  -DSDL_STATIC=ON
 BuildOption(conf):  -DCMAKE_POSITION_INDEPENDENT_CODE=ON
@@ -32,7 +32,7 @@ BuildOption(conf):  -DSDL_STATIC=OFF
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
-BuildRequires:  alsa-lib-devel
+BuildRequires:  pkgconfig(alsa)
 
 %description
 Simple DirectMedia Layer (SDL) is a cross-platform multimedia library designed
@@ -40,15 +40,15 @@ to provide fast access to the graphics frame buffer and audio device.
 
 %package        devel
 Summary:        Development files for SDL3
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 This package provides the libraries, include files, and other resources needed for
 developing SDL applications.
 
 %package        test
 Summary:        Testing libraries for SDL3
-Requires:       %{name}-devel = %{version}
+Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 
 %description    test
 This package contains static testing libraries for SDL3.
@@ -56,9 +56,9 @@ This package contains static testing libraries for SDL3.
 %if %{with static}
 %package        static
 Summary:        Static libraries for SDL3
-Requires:       %{name}-devel = %{version}
+Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 
-%description   static
+%description    static
 Static libraries for SDL3.
 %endif
 
