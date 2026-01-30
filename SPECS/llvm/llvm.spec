@@ -179,6 +179,7 @@ Patch1:         0003-PATCH-clang-Don-t-install-static-libraries.patch
 # With the introduction of --gcc-include-dir in the clang config file,
 # this might no longer be needed.
 Patch2:         0001-Driver-Give-devtoolset-path-precedence-over-Installe.patch
+Patch3:         0001-Add-riscv64-openruyi-linux-triple-and-set-it-to-rva2.patch
 # lld patches
 Patch100:       0001-19-Always-build-shared-libs-for-LLD.patch
 # polly patches
