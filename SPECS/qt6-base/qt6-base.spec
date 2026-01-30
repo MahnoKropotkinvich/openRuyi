@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: jingyupu <pujingyu@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
 #
@@ -327,17 +327,33 @@ sed -i \
 %{_qt6_libdir}/libQt6*.prl
 %{_qt6_libdir}/libQt6*.so
 %{_qt6_libdir}/cmake/Qt6/
-%{_qt6_libdir}/cmake/Qt6BuildInternals/
-%{_qt6_libdir}/cmake/Qt6Concurrent/
-%{_qt6_libdir}/cmake/Qt6Core/
-%{_qt6_libdir}/cmake/Qt6CoreTools/
-%{_qt6_libdir}/cmake/Qt6DBus/
-%{_qt6_libdir}/cmake/Qt6DBusTools/
-%{_qt6_libdir}/cmake/Qt6HostInfo/
-%{_qt6_libdir}/cmake/Qt6Network/
-%{_qt6_libdir}/cmake/Qt6Sql/
-%{_qt6_libdir}/cmake/Qt6Test/
-%{_qt6_libdir}/cmake/Qt6Xml/
+%{_qt6_libdir}/cmake/Qt6BuildInternals/*.cmake
+%{_qt6_libdir}/cmake/Qt6BuildInternals/QtStandaloneTestTemplateProject/CMakeLists.txt
+%{_qt6_libdir}/cmake/Qt6BuildInternals/StandaloneTests/QtBaseTestsConfig.cmake
+%{_qt6_libdir}/cmake/Qt6BuildInternals/QtStandaloneTestTemplateProject/Main.cmake
+%{_qt6_libdir}/cmake/Qt6Concurrent/*.cmake
+%{_qt6_libdir}/cmake/Qt6Core/*.cmake
+%{_qt6_libdir}/cmake/Qt6Core/Qt6CoreResourceInit.in.cpp
+%{_qt6_libdir}/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in
+%{_qt6_libdir}/cmake/Qt6CoreTools/*.cmake
+%{_qt6_libdir}/cmake/Qt6DBus/*.cmake
+%{_qt6_libdir}/cmake/Qt6DBusTools/*.cmake
+%{_qt6_libdir}/cmake/Qt6Gui/*.cmake
+%{_qt6_libdir}/cmake/Qt6GuiTools/*.cmake
+%{_qt6_libdir}/cmake/Qt6HostInfo/*.cmake
+%{_qt6_libdir}/cmake/Qt6Network/*.cmake
+%{_qt6_libdir}/cmake/Qt6OpenGL/*.cmake
+%{_qt6_libdir}/cmake/Qt6OpenGLWidgets/*.cmake
+%{_qt6_libdir}/cmake/Qt6PrintSupport/*.cmake
+%{_qt6_libdir}/cmake/Qt6Sql/Qt6Sql*.cmake
+%{_qt6_libdir}/cmake/Qt6Sql/Qt6QSQLiteDriverPlugin*.cmake
+%{_qt6_libdir}/cmake/Qt6Sql/Qt6QODBCDriverPlugin*.cmake
+%{_qt6_libdir}/cmake/Qt6Test/*.cmake
+%{_qt6_libdir}/cmake/Qt6WaylandClient/*.cmake
+%{_qt6_libdir}/cmake/Qt6WaylandScannerTools/*.cmake
+%{_qt6_libdir}/cmake/Qt6Widgets/*.cmake
+%{_qt6_libdir}/cmake/Qt6WidgetsTools/*.cmake
+%{_qt6_libdir}/cmake/Qt6Xml/*.cmake
 %{_qt6_descriptionsdir}/*.json
 %{_qt6_metatypesdir}/*.json
 %{_qt6_libdir}/pkgconfig/*.pc
@@ -345,7 +361,27 @@ sed -i \
 
 %files private-devel
 %{_qt6_includedir}/*
-%{_qt6_libdir}/cmake/*
+%{_qt6_libdir}/cmake/Qt6CorePrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6DBusPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6GuiPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6NetworkPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6OpenGLPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6PrintSupportPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6SqlPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6TestInternalsPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6TestInternalsPrivate/3rdparty/cmake/*.cmake
+%{_qt6_libdir}/cmake/Qt6TestPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6WidgetsPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6XmlPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6EglFSDeviceIntegrationPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6XcbQpaPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6DeviceDiscoverySupportPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6ExampleIconsPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6FbSupportPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6InputSupportPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6WaylandClientPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6WaylandGlobalPrivate/*.cmake
+%{_qt6_libdir}/cmake/Qt6WlShellIntegrationPrivate/
 
 %files gui
 %{_qt6_libdir}/libQt6Gui.so.6*
