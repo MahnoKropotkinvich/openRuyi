@@ -1,17 +1,17 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
-# SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
+# SPDX-FileContributor: yyjeqhc <ialin.oerv@isrc.iscas.ac.cn>
 # SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           libfyaml
-Version:        0.9
+Version:        0.9.3
 Release:        %autorelease
 Summary:        Complete YAML parser and emitter
 License:        MIT AND GPL-2.0-only AND BSD-2-Clause
 URL:            https://github.com/pantoniou/libfyaml
-#!RemoteAsset
+#!RemoteAsset:  sha256:99ec52a528c629de11da7ead35ffa3c0e8cb548e4acafbd292db47535720f04c
 Source0:        https://github.com/pantoniou/libfyaml/archive/refs/tags/v%{version}.tar.gz
 Source1:        LICENSE-GPL-2.0
 Source2:        LICENSE-BSD-2-Clause
@@ -42,8 +42,6 @@ cp %{SOURCE2} .
 
 %conf -p
 autoreconf -fiv
-
-%ldconfig_scriptlets
 
 %files
 %license LICENSE LICENSE-GPL-2.0 LICENSE-BSD-2-Clause
