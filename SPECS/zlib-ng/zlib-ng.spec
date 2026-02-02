@@ -10,7 +10,7 @@
 %bcond systemtap 0
 
 Name:           zlib-ng
-Version:        2.2.5
+Version:        2.3.2
 Release:        %autorelease
 Summary:        Zlib replacement with SIMD optimizations
 License:        Zlib
@@ -18,6 +18,9 @@ URL:            https://github.com/zlib-ng/zlib-ng
 #!RemoteAsset
 Source:         https://github.com/zlib-ng/zlib-ng/archive/refs/tags/%{version}.tar.gz
 BuildSystem:    cmake
+
+# Support V/Zbc detection via riscv_hwprobe syscall
+Patch0:         zlib-ng-2.3.2-riscv-hwprobe.patch
 
 BuildOption(conf):  -DINSTALL_LIB_DIR=%{_libdir}
 BuildOption(conf):  -DWITH_RVV:BOOL=ON
