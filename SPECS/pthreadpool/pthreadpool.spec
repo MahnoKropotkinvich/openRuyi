@@ -1,15 +1,15 @@
 # SPDX-FileCopyrightText: (C) 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2026 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-%global commit_date  20240617
 %global commit       560c60d342a76076f0557a3946924c6478470044
 %global shortcommit  %(c=%{commit}; echo ${c:0:7})
 
 Name:           pthreadpool
-Version:        %{commit_date}+git%{shortcommit}
+Version:        0+git20260202.%{shortcommit}
 Release:        %autorelease
 Summary:        Portable thread pool
 License:        BSD-2-Clause
@@ -28,7 +28,7 @@ BuildOption(conf):  -DPTHREADPOOL_BUILD_TESTS=ON
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  fxdiv-devel
-BuildRequires:  gtest-devel
+BuildRequires:  pkgconfig(gtest)
 
 %description
 pthreadpool is a portable and efficient thread pool implementation.
