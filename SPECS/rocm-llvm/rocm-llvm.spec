@@ -177,6 +177,7 @@ ln -s %{amd_device_libs_prefix}/amdgcn amdgcn
 #TODO ROCM_DEVICE_LIBS_BITCODE_INSTALL_LOC_* should be removed in ROCm 7.0:
 %cmake -DROCM_DEVICE_LIBS_BITCODE_INSTALL_LOC_NEW="%{amd_device_libs_prefix}/amdgcn" \
     -DROCM_DEVICE_LIBS_BITCODE_INSTALL_LOC_OLD="" \
+    -DCMAKE_EXE_LINKER_FLAGS:STRING="-fuse-ld=lld" \
     %{?__cmake_build_type:-DCMAKE_BUILD_TYPE="%{__cmake_build_type}"}
 %cmake_build -- %{?_smp_mflags}
 # Used by comgr to find device libs when building:
@@ -188,13 +189,15 @@ export ROCM_PATH=$(realpath %__cmake_builddir)
 %cmake -DCMAKE_PREFIX_PATH=$ROCM_PATH \
     -DCMAKE_MODULE_PATH=%{_libdir}/llvm%{llvm_maj_ver}/lib \
     -DCMAKE_BUILD_TYPE="RELEASE" \
+    -DCMAKE_EXE_LINKER_FLAGS:STRING="-fuse-ld=lld" \
     -DBUILD_TESTING=%{?with_comgr_test:ON}%{!?with_comgr_test:OFF}
 %cmake_build -- %{?_smp_mflags}
 
 # Build hipcc
 %define _vpath_srcdir amd/hipcc
 %define _vpath_builddir build-hipcc
-%cmake -DHIPCC_BACKWARD_COMPATIBILITY=OFF
+%cmake -DHIPCC_BACKWARD_COMPATIBILITY=OFF \
+    -DCMAKE_EXE_LINKER_FLAGS:STRING="-fuse-ld=lld"
 %cmake_build -- %{?_smp_mflags}
 
 %check
