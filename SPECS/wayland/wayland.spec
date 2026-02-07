@@ -42,7 +42,7 @@ This package contains the Wayland EGL backend library, libwayland-egl.
 %package        devel
 Summary:        Development files for Wayland
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       %{name}%{?_isa}-egl = %{version}-%{release}
+Requires:       %{name}-egl%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package contains the headers, libraries and tools needed to develop
