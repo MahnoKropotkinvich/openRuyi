@@ -1,34 +1,35 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: laokz <zhangkai@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-Name: fakeroot
-Version: 1.37.1.2
-Release: %autorelease
-Summary: Gives a fake root environment
-License: GPL-3.0-or-later
-# Source code: https://salsa.debian.org/clint/fakeroot/-/tree/upstream
-URL: https://tracker.debian.org/pkg/fakeroot
+Name:           fakeroot
+Version:        1.37.1.2
+Release:        %autorelease
+Summary:        Gives a fake root environment
+License:        GPL-3.0-or-later
+URL:            https://tracker.debian.org/pkg/fakeroot
+VCS:            git:https://salsa.debian.org/clint/fakeroot
 #!RemoteAsset
-Source: https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_%{version}.orig.tar.gz
-Patch0: debian_fix-shell-in-fakeroot.patch
+Source:         https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_%{version}.orig.tar.gz
+BuildSystem:    autotools
 
-BuildRequires: make
-BuildRequires: autoconf
-BuildRequires: automake
-BuildRequires: libtool
-BuildRequires: util-linux
-BuildRequires: gcc
-BuildRequires: acl-devel
-BuildRequires: libcap-devel
-BuildRequires: sharutils
+Patch0:         debian_fix-shell-in-fakeroot.patch
+
+BuildRequires:  make
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  libtool
+BuildRequires:  util-linux
+BuildRequires:  gcc
+BuildRequires:  acl-devel
+BuildRequires:  libcap-devel
+BuildRequires:  sharutils
 Requires(post): alternatives
 Requires(post): coreutils
 Requires(preun): alternatives
-
-BuildSystem: autotools
 
 %description
 fakeroot runs a command in an environment wherein it appears to have
@@ -41,7 +42,6 @@ had the user really been root.
 ./bootstrap
 
 %build
-
 for type in sysv tcp; do
   mkdir obj-$type
   cd obj-$type
