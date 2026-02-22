@@ -18,6 +18,7 @@ License:        Apache-2.0
 URL:            https://github.com/bus1/dbus-broker
 #!RemoteAsset
 Source:         https://github.com/bus1/dbus-broker/releases/download/v%{version}/%{name}-%{version}.tar.xz
+Patch0:         test-sockopt-loosen-verification-of-stale-pidfds.patch
 BuildSystem:    meson
 
 BuildOption(conf):  -Daudit=true
