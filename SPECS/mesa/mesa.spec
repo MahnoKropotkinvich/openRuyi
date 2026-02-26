@@ -4,15 +4,14 @@
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-# Using LTO with Mesa is not stable. Enabling LTO will cause Mesa to add
-# -mtls-dialect=desc, but currently glibc does not support this on riscv64
+# Mesa upstream now prohibits building w/ LTO
 %global _lto_cflags %{nil}
 # Mesa contains some features not applicable to Linux that must be disabled
 %global __meson_auto_features disabled
 
 Name:           mesa
 Summary:        The Mesa 3D graphics library
-Version:        25.3.0
+Version:        26.0.1
 Release:        %autorelease
 License:        MIT
 URL:            https://mesa3d.org/
@@ -24,9 +23,9 @@ BuildSystem:    meson
 # Fixes etnaviv disasm unit test failure of excepting "-nan"
 Patch1:         0001-isaspec-deocde-try-to-preserve-NaN-sign-when-printin.patch
 # Patches to allow Zink running on libVK_IMG w/o IMG GLES driver
-# See FD.o gitlab mesa/mesa MRs: !38810 !38813 !38897 !39092
+# See FD.o gitlab mesa/mesa MRs: !37115 !38810
 # The IMG blob related part isn't submitted yet
-Patch2:         mesa-25.3.0-zink-kmsro-for-img-blob.patch
+Patch2:         mesa-26.0.1-zink-kmsro-for-img-blob.patch
 
 # nvk is blocked by Rust packaging
 BuildOption(conf):  -Dgallium-drivers=llvmpipe,softpipe,r300,r600,radeonsi,nouveau,virgl,iris,etnaviv,zink
@@ -63,8 +62,7 @@ BuildOption(conf):  -Ddisplay-info=enabled
 BuildOption(conf):  -Dgallium-rusticl=false
 BuildOption(conf):  -Dgallium-va=enabled
 
-# FIXME:  26.0 new option that should be set to false for Distro builds
-# BuildOption(conf):  -Dvulkan-manifest-per-architecture=false
+BuildOption(conf):  -Dvulkan-manifest-per-architecture=false
 BuildOption(conf):  -Dvulkan-layers=device-select,overlay,screenshot,anti-lag,vram-report-limit
 BuildOption(conf):  -Dxlib-lease=enabled
 
