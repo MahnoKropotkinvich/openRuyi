@@ -9,7 +9,7 @@
 %define real_version 6.10.1
 %define short_version 6.10
 
-Name:           qt6-shadertools
+Name:           qt6-qtshadertools
 Version:        6.10.1
 Release:        %autorelease
 Summary:        Qt6 - Qt Shader Tools module builds on the SPIR-V Open Source Ecosystem
