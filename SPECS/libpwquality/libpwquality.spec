@@ -49,8 +49,8 @@ See the pwquality.h header file for the API.
 
 %package     -n python-pwquality
 Summary:        Python bindings for the libpwquality library
-Provides:       python-pwquality = %{version}-%{release}
-%python_provide python-pwquality
+Provides:       python3-pwquality = %{version}-%{release}
+%python_provide python3-pwquality
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description -n python-pwquality
