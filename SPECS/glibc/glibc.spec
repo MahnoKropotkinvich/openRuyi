@@ -445,7 +445,6 @@ cd cc-base
 make %{?_smp_mflags} %{?make_output_sync} install_root=%{buildroot} localedata/install-locale-files
 cd ..
 
-rm -rf %{buildroot}%{_datadir}/locale/en_GB/LC_MESSAGES
 %find_lang libc --generate-subpackages
 
 install -m 644 %{SOURCE5} %{buildroot}/etc/nsswitch.conf
@@ -615,7 +614,7 @@ call_ldconfig()
 call_ldconfig()
 %end
 
-%files
+%files -f libc.lang
 # glibc
 %defattr(-,root,root)
 %license LICENSES

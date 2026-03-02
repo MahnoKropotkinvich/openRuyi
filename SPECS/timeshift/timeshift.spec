@@ -59,12 +59,10 @@ install -d %{buildroot}%{_localstatedir}/log/timeshift-btrfs
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf %{buildroot}%{_datadir}/locale/*@*
-rm -rf %{buildroot}%{_datadir}/locale/en_GB/
-rm -rf %{buildroot}%{_datadir}/locale/en_US/
 %find_lang %{name} --generate-subpackages
 %fdupes %{buildroot}%{_datadir}
 
-%files
+%files -f %{name}.lang
 %license LICENSES/*
 %dir %{_sysconfdir}/timeshift
 %config(noreplace) %{_sysconfdir}/timeshift/default.json

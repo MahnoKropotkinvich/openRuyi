@@ -70,7 +70,7 @@ install -Dpm 644 %{SOURCE1} %{buildroot}%{_unitdir}/powertop.service
 # Hack for powertop not to show warnings on first start
 touch %{_localstatedir}/cache/powertop/{saved_parameters.powertop,saved_results.powertop} &> /dev/null || :
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc README.md README.traceevent CONTRIBUTE.md TODO
 %{_sbindir}/powertop
@@ -79,7 +79,6 @@ touch %{_localstatedir}/cache/powertop/{saved_parameters.powertop,saved_results.
 %ghost %{_localstatedir}/cache/powertop/saved_parameters.powertop
 %ghost %{_localstatedir}/cache/powertop/saved_results.powertop
 %{_datadir}/bash-completion/completions/powertop
-%{_datadir}/locale/en_*/LC_MESSAGES/powertop.mo
 %{_mandir}/man8/powertop.8*
 
 %changelog

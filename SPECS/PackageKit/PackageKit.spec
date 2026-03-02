@@ -74,7 +74,6 @@ ln -s pk-gstreamer-install %{buildroot}%{_libexecdir}/gst-install-plugins-helper
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
 %check
@@ -83,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %post
 %systemd_post packagekit-offline-update.service packagekit.service
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc README.md AUTHORS NEWS
 %dir %{_datadir}/PackageKit

@@ -61,10 +61,9 @@ from a directory of packages.
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc README.md AUTHORS NEWS
 %{_libdir}/libappstream-glib.so.8*

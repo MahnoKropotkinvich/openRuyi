@@ -88,11 +88,9 @@ find $RPM_BUILD_ROOT -name '*.a' -exec rm -f {} ';'
 
 rm -f %{buildroot}%{_datadir}/doc/fontforge/{.buildinfo,.nojekyll}
 
-# XXX: Find out why find_lang doesn't generate the en_GB package
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang FontForge --generate-subpackages
 
-%files
+%files -f FontForge.lang
 %doc AUTHORS
 %license LICENSE COPYING.gplv3
 %{_bindir}/*

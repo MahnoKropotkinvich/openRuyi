@@ -62,8 +62,6 @@ developing applications that use %{name}.
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_CA/
 %find_lang gcr-4 --generate-subpackages
 
 %post
@@ -75,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_CA/
 %postun
 %systemd_user_postun_with_restart gcr-ssh-agent.service
 
-%files
+%files -f gcr-4.lang
 %doc NEWS README.md
 %{_libexecdir}/gcr-ssh-agent
 %{_libexecdir}/gcr4-ssh-askpass

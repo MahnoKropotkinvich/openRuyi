@@ -96,7 +96,6 @@ mkdir -p %{buildroot}%{_sysconfdir}/udisks2/modules.conf.d
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
 %post
@@ -112,7 +111,7 @@ fi
 %postun
 %systemd_postun_with_restart udisks2.service
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc README.md AUTHORS NEWS HACKING
 %dir %{_sysconfdir}/udisks2

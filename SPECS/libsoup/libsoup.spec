@@ -56,11 +56,10 @@ install -m 644 -D tests/libsoup.supp %{buildroot}%{_datadir}/libsoup-3.0/libsoup
 
 # Avoid illegal package names
 rm -rf %{buildroot}%{_datadir}/locale/*@*
-rm -rf %{buildroot}%{_datadir}/locale/en_GB/LC_MESSAGES
 
 %find_lang libsoup-3.0 --generate-subpackages
 
-%files
+%files -f libsoup-3.0.lang
 %license COPYING
 %doc README NEWS AUTHORS
 %{_libdir}/libsoup-3.0.so.0*

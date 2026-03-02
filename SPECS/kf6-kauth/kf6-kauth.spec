@@ -63,11 +63,10 @@ Development files.
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 # Use langpacks macro to auto-split translations
 %find_lang %{name}6 --with-qt --all-name --generate-subpackages
 
-%files
+%files -f %{name}6.lang
 %license LICENSES/*
 %doc README.md
 %dir %{_kf6_plugindir}/kf6/kauth

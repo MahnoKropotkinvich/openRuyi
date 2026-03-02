@@ -83,7 +83,6 @@ install -pm 644 README.md %{buildroot}/%{_pkgdocdir}
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
 %post
@@ -96,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %systemd_user_preun xdg-document-portal.service
 %systemd_user_preun xdg-permission-store.service
 
-%files
+%files -f %{name}.lang
 %doc %{_pkgdocdir}
 %license COPYING
 %{_datadir}/dbus-1/interfaces/org.freedesktop.host.portal.Registry.xml

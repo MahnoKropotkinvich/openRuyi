@@ -57,11 +57,9 @@ rm -f %{buildroot}/%{_libexecdir}/%{name}/hipreport-android.sh
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_US/
 %find_lang %{name} --generate-subpackages
 
-%files
+%files -f %{name}.lang
 %license COPYING.LGPL
 %{_datadir}/bash-completion/completions/openconnect
 %{_mandir}/man8/*

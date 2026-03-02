@@ -83,7 +83,6 @@ Python 3 module for speech-dispatcher.
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
 #Remove %{_infodir}/dir file
@@ -111,7 +110,7 @@ desktop-file-validate %{buildroot}%{_datadir}/speech-dispatcher/conf/desktop/spe
 %postun
 %systemd_postun_with_restart speech-dispatcherd.service
 
-%files
+%files -f %{name}.lang
 %license COPYING.LGPL
 %doc NEWS README.md
 %dir %{_sysconfdir}/speech-dispatcher/

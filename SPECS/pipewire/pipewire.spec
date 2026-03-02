@@ -127,7 +127,6 @@ ln -s ../pipewire.conf.avail/50-raop.conf \
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 
 %find_lang %{name} --generate-subpackages
 
@@ -135,7 +134,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %systemd_user_post pipewire.service pipewire.socket
 %systemd_user_post pipewire-pulse.service pipewire-pulse.socket
 
-%files
+%files -f %{name}.lang
 %license LICENSE COPYING
 %doc README.md NEWS
 %{_userunitdir}/pipewire.*

@@ -78,14 +78,13 @@ chmod -x poppler/CairoFontEngine.cc
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang pdfsig --generate-subpackages
 
 # just skip now, or will segfault.
 %check
 # export PKG_CONFIG_PATH=%{buildroot}%{_datadir}/pkgconfig:%{buildroot}%{_libdir}/pkgconfig
 
-%files
+%files -f pdfsig.lang
 %doc README.md
 %license COPYING
 %{_libdir}/libpoppler.so.*

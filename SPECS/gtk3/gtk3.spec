@@ -107,9 +107,6 @@ mkdir -p %{buildroot}%{_libdir}/gtk-3.0/immodules
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_CA/
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en/
 %find_lang gtk30 --all-name --generate-subpackages
 
 %check
@@ -124,7 +121,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %transfiletriggerpostun -- %{_libdir}/gtk-3.0/3.0.0/immodules
 %{_bindir}/gtk-query-immodules-3.0 --update-cache &>/dev/null || :
 
-%files
+%files -f gtk30.lang
 %license COPYING
 %doc NEWS README.md
 %{_bindir}/gtk-query-immodules-3.0*

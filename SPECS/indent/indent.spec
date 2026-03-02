@@ -59,10 +59,9 @@ rm -f %{buildroot}%{_infodir}/dir \
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc AUTHORS NEWS README.md ChangeLog*
 %{_bindir}/indent

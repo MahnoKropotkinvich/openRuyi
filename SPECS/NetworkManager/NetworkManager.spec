@@ -150,8 +150,6 @@ install -m 0644 %{SOURCE1} %{buildroot}%{_prefix}/lib/NetworkManager/
 install -m 0644 %{SOURCE2} %{buildroot}%{_prefix}/lib/NetworkManager/conf.d
 # TODO: Avoid illegal locale package name
 rm -rf %{buildroot}%{_datadir}/locale/*@*
-rm -rf %{buildroot}%{_datadir}/locale/en_CA
-rm -rf %{buildroot}%{_datadir}/locale/en_GB
 %find_lang %{name} --generate-subpackages
 
 # TODO: We purposely disable tests for now
@@ -175,7 +173,7 @@ rm -rf %{buildroot}%{_datadir}/locale/en_GB
 %postun cloud-setup
 %systemd_postun nm-cloud-setup.service
 
-%files
+%files -f %{name}.lang
 %doc ChangeLog NEWS AUTHORS TODO
 %license COPYING
 %{_bindir}/nm-online

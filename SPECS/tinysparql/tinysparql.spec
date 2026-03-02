@@ -85,7 +85,6 @@ This package contains the documentation for %{name}.
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang tinysparql3 --generate-subpackages
 
 %check
@@ -100,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %postun
 %systemd_user_postun_with_restart tinysparql-xdg-portal-3.service
 
-%files
+%files -f tinysparql3.lang
 %license COPYING COPYING.GPL
 %doc AUTHORS NEWS README.md
 %{_bindir}/tinysparql

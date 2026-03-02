@@ -42,10 +42,9 @@ needed to develop applications that use the json-glib library.
 %install -a
 # Avoid illegal package names
 rm -rf %{buildroot}%{_datadir}/locale/*@*
-rm -rf %{buildroot}%{_datadir}/locale/en_GB/LC_MESSAGES
 %find_lang json-glib-1.0 --generate-subpackages
 
-%files
+%files -f json-glib-1.0.lang
 %license LICENSES/LGPL-2.1-or-later.txt
 %doc NEWS README.md
 %{_libdir}/libjson-glib-1.0.so.0*

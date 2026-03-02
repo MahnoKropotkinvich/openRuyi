@@ -158,7 +158,7 @@ widgets in Glade.
 rm -rf %{buildroot}%{_datadir}/locale/*@*
 %find_lang vte-%{_apiver} --generate-subpackages
 
-%files
+%files -f vte-%{_apiver}.lang
 %license COPYING.CC-BY-4-0 COPYING.GPL3 COPYING.LGPL3 COPYING.XTERM
 # vte libs
 %{_libdir}/*.so.*
@@ -167,7 +167,6 @@ rm -rf %{buildroot}%{_datadir}/locale/*@*
 %dir %{_userunitdir}/vte-spawn-.scope.d
 %{_userunitdir}/vte-spawn-.scope.d/defaults.conf
 %{_libexecdir}/vte-urlencode-cwd
-%{_datadir}/locale/en_*/LC_MESSAGES/vte-%{_apiver}.mo
 %dir %{_datadir}/xdg-terminals
 
 %files typelib

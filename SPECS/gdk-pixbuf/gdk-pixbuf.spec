@@ -61,7 +61,6 @@ the functionality of the installed %{name} package.
 
 %install -a
 rm -rf %{buildroot}%{_datadir}/locale/*@*
-rm -rf %{buildroot}%{_datadir}/locale/*_*
 
 %find_lang %{name} --generate-subpackages
 
@@ -74,7 +73,7 @@ gdk-pixbuf-query-loaders --update-cache
 # TODO: Fix tests
 %check
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc NEWS README.md
 %{_libdir}/libgdk_pixbuf-2.0.so.*

@@ -127,9 +127,6 @@ ln -sf ../%{_lib}/glib-2.0/glib-compile-schemas %{buildroot}%{_bindir}/glib-comp
 
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-# XXX: Why doesn't find_lang pack them up?
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_CA
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB
 %find_lang glib20 --generate-subpackages --all-name
 
 # handle GIO/GSettings cache updates.
@@ -150,7 +147,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 # Avoid fragile tests failure.
 %meson_test --timeout-multiplier 5 || cat %{_build}/meson-logs/testlog.txt
 
-%files
+%files -f glib20.lang
 %license LICENSES/LGPL-2.1-or-later.txt
 %doc NEWS README.md
 # Runtime libraries

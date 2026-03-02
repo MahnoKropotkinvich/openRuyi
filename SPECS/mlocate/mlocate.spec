@@ -46,14 +46,13 @@ touch %{buildroot}%{_localstatedir}/lib/mlocate/mlocate.db
 %pre
 %sysusers_create_package %{name} %{SOURCE1}
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc AUTHORS ChangeLog README NEWS
 %defattr(-,root,root,-)
 %attr(0755,root,root) %{_bindir}/locate
 %{_bindir}/updatedb
 %{_mandir}/man*/*
-%{_datadir}/locale/en_GB/LC_MESSAGES/mlocate.mo
 %{_sysusersdir}/%{name}.conf
 %dir %attr(0750,root,mlocate) %{_localstatedir}/lib/mlocate
 %ghost %attr(0640,root,mlocate) %{_localstatedir}/lib/mlocate/mlocate.db

@@ -59,10 +59,9 @@ Requires:       pkgconfig(Qt6Core) >= 6.2.4
 %install -a
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
-%files
+%files -f %{name}.lang
 %{bash_completions_dir}/appstreamcli
 %{_bindir}/appstreamcli
 %{_datadir}/appstream/appstream.conf
@@ -73,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %{_libdir}/girepository-1.0/*.typelib
 %{_libdir}/libAppStreamQt.so.*
 
-%files    devel
+%files devel
 %{_includedir}/appstream/
 %{_libdir}/libappstream.so
 %{_libdir}/pkgconfig/appstream.pc

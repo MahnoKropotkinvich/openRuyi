@@ -49,10 +49,9 @@ of the drudgery of manually editing the symbolic links.
 %install -a
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %dir %{_sysconfdir}/alternatives
 %ghost %dir %attr(755, root, root) /etc/alternatives.admindir

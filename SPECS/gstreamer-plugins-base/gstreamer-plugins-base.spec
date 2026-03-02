@@ -104,10 +104,9 @@ applications that use %{name}.
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang gst-plugins-base-%{majorminor} --generate-subpackages
 
-%files
+%files -f gst-plugins-base-%{majorminor}.lang
 %license COPYING
 %doc NEWS README.md
 %{_libdir}/libgstallocators-%{majorminor}.so.*

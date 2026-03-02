@@ -97,7 +97,6 @@ touch %{buildroot}%{_localstatedir}/lib/colord/storage.db
 
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
 %post
@@ -109,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %postun
 %systemd_postun colord.service
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc README.md AUTHORS NEWS
 %{_libexecdir}/colord

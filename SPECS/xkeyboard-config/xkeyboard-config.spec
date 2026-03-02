@@ -50,10 +50,9 @@ if [ ! -e %{buildroot}%{_datadir}/X11/xkb ]; then
     ln -srf %{buildroot}%{_datadir}/%{pkgconfig_name} %{buildroot}%{_datadir}/X11/xkb
 fi
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --all-name --generate-subpackages
 
-%files
+%files -f %{name}.lang
 %doc AUTHORS README.md COPYING docs/README.* docs/HOWTO.*
 %{_mandir}/man7/xkeyboard-config.*
 %{_mandir}/man7/%{pkgconfig_name}.*

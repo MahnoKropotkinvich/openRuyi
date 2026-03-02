@@ -39,8 +39,6 @@ TLS (via GnuTLS) and proxy support (via libproxy).
 %install -a
 # Avoid illegal package names
 rm -rf %{buildroot}%{_datadir}/locale/*@*
-rm -rf %{buildroot}%{_datadir}/locale/en_CA/LC_MESSAGES
-rm -rf %{buildroot}%{_datadir}/locale/en_GB/LC_MESSAGES
 
 %find_lang %{name} --generate-subpackages
 
@@ -52,7 +50,7 @@ rm -rf %{buildroot}%{_datadir}/locale/en_GB/LC_MESSAGES
 # TODO: When we have these macros, we should uncomment this.
 # %%gio_module_postun
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc NEWS README
 %{_datadir}/dbus-1/services/org.gtk.GLib.PACRunner.service

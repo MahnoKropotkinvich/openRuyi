@@ -38,11 +38,10 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-error=format-security"
 
 %install -a
 rm -rf %{buildroot}%{_docdir}
-rm -rf %{buildroot}%{_datadir}/locale/*_*
 
 %find_lang %{name} --generate-subpackages
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc AUTHORS README CHANGES ogg123/ogg123rc-example
 %{_bindir}/*

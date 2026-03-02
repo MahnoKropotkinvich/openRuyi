@@ -73,13 +73,12 @@ developing applications that use %{name}.
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang gstreamer-%{majorminor} --generate-subpackages
 
 install -m0755 -D %{SOURCE1} %{buildroot}%{_rpmconfigdir}/gstreamer.prov
 install -m0644 -D %{SOURCE2} %{buildroot}%{_rpmconfigdir}/fileattrs/gstreamer.attr
 
-%files
+%files -f gstreamer-%{majorminor}.lang
 %license COPYING
 %doc NEWS README.md
 %{_libdir}/libgstreamer-%{majorminor}.so.*

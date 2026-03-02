@@ -62,13 +62,12 @@ autoreconf -fiv
 # todo: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
 %find_lang %{name} --generate-subpackages
 
 # todo: the tests should on the real machine,we skip here.
 %check
 
-%files
+%files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog NEWS
 %{_bindir}/volume_key
 %{_mandir}/man8/volume_key.8*

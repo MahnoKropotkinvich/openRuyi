@@ -207,7 +207,7 @@ install -D -m 644 macros.systemtap %{buildroot}%{_rpmmacrodir}/macros.systemtap
 %{_sbindir}/systemtap-service
 %config(noreplace) %{_sysconfdir}/systemtap/config
 
-%files runtime
+%files runtime -f %{name}.lang
 %license COPYING
 %doc README README.security AUTHORS NEWS
 %{_bindir}/staprun
@@ -232,8 +232,6 @@ install -D -m 644 macros.systemtap %{buildroot}%{_rpmmacrodir}/macros.systemtap
 %endif
 %{_mandir}/man8/stapbpf.8*
 %{_mandir}/man8/systemtap-service.8*
-# Well this is for english
-%{_datadir}/locale/en/LC_MESSAGES/systemtap.mo
 
 %files client
 %doc README README.unprivileged AUTHORS NEWS

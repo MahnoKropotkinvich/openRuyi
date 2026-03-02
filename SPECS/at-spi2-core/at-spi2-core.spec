@@ -60,14 +60,12 @@ API documentation for libatspi.
 # TODO: fix the name error.
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_GB/
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en_CA/
 %find_lang %{name} --generate-subpackages
 
 %check
 # skip the tests,need dbus
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc NEWS README.md
 %{_libexecdir}/at-spi2-registryd
