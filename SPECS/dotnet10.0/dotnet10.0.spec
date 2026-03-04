@@ -373,7 +373,7 @@ if [[ ${release_json_tag} != %{upstream_tag} ]]; then
    exit 1
 fi
 
-%setup -q -n dotnet-%{upstream_tag_without_v}
+%autosetup -p1 -n dotnet-%{upstream_tag_without_v}
 
 # Remove all prebuilts and binaries
 rm -rf .dotnet/
