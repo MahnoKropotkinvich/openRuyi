@@ -32,7 +32,8 @@ BuildOption(install):  PKGCONFIGDIR=%{_libdir}/pkgconfig
 BuildRequires:  gcc
 BuildRequires:  make
 
-Conflicts:      systemd-libs
+# Conflicting libudev.so.1
+Conflicts:      systemd-udev
 
 %description
 %{name} is a drop-in replacement for libudev intended to work with
