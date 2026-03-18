@@ -1,20 +1,21 @@
 # SPDX-FileCopyrightText: (C) 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2026 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: Li Guan <guanli.oerv@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 %global pypiname mupdf
 
 Name:           mupdf
-Version:        1.27.0
+Version:        1.27.2
 Release:        %autorelease
 Summary:        A lightweight PDF viewer and toolkit
 License:        AGPL-3.0-or-later
-URL:            http://mupdf.com/
+URL:            https://mupdf.com/
 VCS:            git:https://github.com/ArtifexSoftware/mupdf
-#!RemoteAsset:  sha256:ae2442416de499182d37a526c6fa2bacc7a3bed5a888d113ca04844484dfe7c6
-Source0:        http://mupdf.com/downloads/archive/mupdf-%{version}-source.tar.gz
+#!RemoteAsset:  sha256:553867b135303dc4c25ab67c5f234d8e900a0e36e66e8484d99adc05fe1e8737
+Source0:        https://mupdf.com/downloads/archive/mupdf-%{version}-source.tar.gz
 Source1:        mupdf.desktop
 Source2:        mupdf-gl.desktop
 BuildSystem:    autotools
@@ -145,8 +146,8 @@ LD_LIBRARY_PATH='%{buildroot}%{_libdir}' %{py3_test_envvars} %{python3} scripts/
 %files -n python-%{pypiname} -f %{pyproject_files}
 %license COPYING
 %{python3_sitearch}/_mupdf.so
-%{python3_sitearch}/libmupdf.so.27.0
-%{python3_sitearch}/libmupdfcpp.so.27.0
+%{python3_sitearch}/libmupdf.so.27*
+%{python3_sitearch}/libmupdfcpp.so.27*
 
 %changelog
 %{?autochangelog}
