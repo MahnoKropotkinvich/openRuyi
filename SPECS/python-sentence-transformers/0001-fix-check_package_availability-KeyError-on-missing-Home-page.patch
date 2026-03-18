@@ -1,0 +1,11 @@
+--- a/sentence_transformers/util/environment.py	2026-03-03 15:20:17
++++ b/sentence_transformers/util/environment.py	2026-03-30 19:32:06
+@@ -50,7 +50,7 @@
+     try:
+         meta = metadata(package_name)
+         return meta["Name"] == package_name and owner in meta["Home-page"]
+-    except PackageNotFoundError:
++    except (PackageNotFoundError, KeyError, TypeError):
+         return False
+ 
+ 
