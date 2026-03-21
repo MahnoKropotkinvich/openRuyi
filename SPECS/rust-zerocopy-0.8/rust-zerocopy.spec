@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "zerocopy"
 License:        BSD-2-Clause OR MIT OR Apache-2.0
 URL:            https://crates.io/crates/zerocopy
-#!RemoteAsset
+#!RemoteAsset:  sha256:7456cf00f0685ad319c5b1693f291a650eaf345e941d082fc4e03df8a03996ac
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "wyz"
 License:        MIT
 URL:            https://crates.io/crates/wyz
-#!RemoteAsset
+#!RemoteAsset:  sha256:05f360fc0b24296329c78fda852a1e9ae82de9cf7b27dae4b7f62f118f77b9ed
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "radium"
 License:        MIT
 URL:            https://crates.io/crates/radium
-#!RemoteAsset
+#!RemoteAsset:  sha256:dc33ff2d4973d518d823d61aa239014831e521c75da58e3df4840d3f47749d09
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

@@ -12,7 +12,7 @@ Release:        %autorelease
 Summary:        Natural Language Toolkit
 License:        Apache-2.0
 URL:            https://www.nltk.org/
-#!RemoteAsset
+#!RemoteAsset:  sha256:cb5945d6424a98d694c2b9a0264519fab4363711065a46aa0ae7a2195b92e71f
 Source0:        https://files.pythonhosted.org/packages/source/n/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    pyproject

@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "target-lexicon"
 License:        Apache-2.0 WITH LLVM-exception
 URL:            https://crates.io/crates/target-lexicon
-#!RemoteAsset
+#!RemoteAsset:  sha256:b1dd07eb858a2067e2f3c7155d54e929265c264e6f37efe3ee7a8d1b5a1dd0ba
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

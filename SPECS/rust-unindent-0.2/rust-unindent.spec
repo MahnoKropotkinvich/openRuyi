@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "unindent"
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/unindent
-#!RemoteAsset
+#!RemoteAsset:  sha256:7264e107f553ccae879d21fbea1d6724ac785e8c3bfc762137959b5802826ef3
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

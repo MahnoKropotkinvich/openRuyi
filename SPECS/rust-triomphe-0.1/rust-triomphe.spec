@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "triomphe"
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/triomphe
-#!RemoteAsset
+#!RemoteAsset:  sha256:dd69c5aa8f924c7519d6372789a74eac5b94fb0f8fcf0d4a97eb0bfc3e785f39
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

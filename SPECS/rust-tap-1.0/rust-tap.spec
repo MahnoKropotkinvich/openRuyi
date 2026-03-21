@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "tap"
 License:        MIT
 URL:            https://crates.io/crates/tap
-#!RemoteAsset
+#!RemoteAsset:  sha256:55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

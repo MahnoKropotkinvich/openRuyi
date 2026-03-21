@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "rpds"
 License:        MPL-2.0
 URL:            https://crates.io/crates/rpds
-#!RemoteAsset
+#!RemoteAsset:  sha256:9e75f485e819d4d3015e6c0d55d02a4fd3db47c1993d9e603e0361fba2bffb34
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

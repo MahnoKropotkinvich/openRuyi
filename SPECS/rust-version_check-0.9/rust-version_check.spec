@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "version_check"
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/version_check
-#!RemoteAsset
+#!RemoteAsset:  sha256:0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

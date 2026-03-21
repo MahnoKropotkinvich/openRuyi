@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "python3-dll-a"
 License:        MIT
 URL:            https://crates.io/crates/python3-dll-a
-#!RemoteAsset
+#!RemoteAsset:  sha256:d381ef313ae70b4da5f95f8a4de773c6aa5cd28f73adec4b4a31df70b66780d8
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 
