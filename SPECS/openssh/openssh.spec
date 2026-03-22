@@ -35,6 +35,10 @@ Source11:       sshd-keygen.target
 Source12:       openssh-server-systemd-sysusers.conf
 BuildSystem:    autotools
 
+# Fix seccomp failure termination because of zlib-ng calling hwprobe
+# See: https://github.com/openssh/openssh-portable/pull/644
+Patch0:         0001-seccomp-sandbox-allow-riscv_hwprobe-syscall-if-prese.patch
+
 BuildOption(conf):  --sysconfdir=%{_sysconfdir}/ssh
 BuildOption(conf):  --libexecdir=%{_libexecdir}/openssh
 BuildOption(conf):  --datadir=%{_datadir}/openssh
@@ -157,6 +161,7 @@ an X11 passphrase dialog for OpenSSH.
 %prep
 # Our %%prep won't work so this - 251
 %setup -q -n %{name}-%{version}
+%autopatch -p1 -q
 
 %conf -p
 autoreconf -fiv
