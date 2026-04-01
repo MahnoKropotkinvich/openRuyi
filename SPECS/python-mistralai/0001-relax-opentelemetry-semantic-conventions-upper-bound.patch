@@ -1,0 +1,14 @@
+# Remove upper version bound on opentelemetry-semantic-conventions.
+# mistralai 2.0.2 requires opentelemetry-semantic-conventions>=0.60b1,<0.61,
+# but the local repository provides 0.61b0 which is functionally compatible.
+--- mistralai-2.0.2/pyproject.toml.orig
++++ mistralai-2.0.2/pyproject.toml
+@@ -12,7 +12,7 @@
+     "python-dateutil >=2.8.2",
+     "typing-inspection >=0.4.0",
+     "opentelemetry-api (>=1.33.1,<2.0.0)",
+-    "opentelemetry-semantic-conventions (>=0.60b1,<0.61)",
++    "opentelemetry-semantic-conventions (>=0.60b1)",
+ ]
+ 
+ [project.optional-dependencies]
