@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "pyo3-build-config"
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/pyo3-build-config
-#!RemoteAsset
+#!RemoteAsset:  sha256:b455933107de8642b4487ed26d912c2d899dec6114884214a0b3bb3be9261ea6
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

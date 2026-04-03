@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "pyo3-macros-backend"
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/pyo3-macros-backend
-#!RemoteAsset
+#!RemoteAsset:  sha256:03b51720d314836e53327f5871d4c0cfb4fb37cc2c4a11cc71907a86342c40f9
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 

@@ -14,7 +14,7 @@ Release:        %autorelease
 Summary:        Rust crate "pyo3-ffi"
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/pyo3-ffi
-#!RemoteAsset
+#!RemoteAsset:  sha256:5994456d9dab8934d600d3867571b6410f24fbd6002570ad56356733eb54859b
 Source:         https://crates.io/api/v1/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildSystem:    rustcrates
 
