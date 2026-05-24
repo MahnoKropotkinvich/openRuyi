@@ -7,12 +7,12 @@
 %global srcname jsonschema
 
 Name:           python-%{srcname}
-Version:        4.17.3
+Version:        4.23.0
 Release:        %autorelease
 Summary:        Implementation of JSON Schema validation for Python
 License:        MIT
 URL:            https://github.com/Julian/jsonschema
-#!RemoteAsset:  sha256:0f864437ab8b6076ba6707453ef8f98a6a0d512a80e93f8abdb676f737ecb60d
+#!RemoteAsset:  sha256:d71497fef26351a33265337fa77ffeb82423f3ea21283cd9467bb03999266bc4
 Source:         https://files.pythonhosted.org/packages/source/j/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    pyproject
@@ -28,10 +28,12 @@ BuildRequires:  python3dist(hatch-vcs)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(hatch-fancy-pypi-readme)
+BuildRequires:  python3dist(jsonschema-specifications)
+BuildRequires:  python3dist(referencing)
+BuildRequires:  python3dist(rpds-py)
 # for tests
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(attrs)
-BuildRequires:  python3dist(pyrsistent)
 BuildRequires:  python3dist(hypothesis)
 
 Provides:       python3-%{srcname} = %{version}-%{release}
