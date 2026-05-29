@@ -302,7 +302,6 @@ Requires:       ffmpeg
 # https://github.com/jamienicol/glslopt-rs/commit/eef3dada10f2cba865d35354c060ab9e37f045fb
 0001-Patch-glsl-optimizer-to-build-with-glibc-2.43.patch
 0002-add-GetSystemProxyDirect-to-libproxy-path.patch
-2000-riscv64-Use-long-tail-jump-for-xptcall-stubs.patch
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1865601
 2001-riscv64-enable-gles-rendering.patch
 # https://phabricator.services.mozilla.com/D301784
