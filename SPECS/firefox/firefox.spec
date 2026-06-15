@@ -412,7 +412,8 @@ echo "ac_add_options --with-system-fdk-aac" >> .mozconfig
 
 %build
 %ifarch riscv64
-FF_OPTFLAGS="%{optflags}"
+# enable -v to show what exactly causes fault
+FF_OPTFLAGS="%{optflags} -v"
 # Otherwise will segmentation fault w/ V extension
 # https://github.com/llvm/llvm-project/issues/198699
 FF_OPTFLAGS="${FF_OPTFLAGS//-fstack-clash-protection/}"
@@ -431,12 +432,10 @@ echo "export RANLIB=\"llvm-ranlib\"" >> .mozconfig
 echo "ac_add_options --with-libclang-path=`llvm-config --libdir`" >> .mozconfig
 
 # https://firefox-source-docs.mozilla.org/build/buildsystem/pgo.html
-%ifarch x86_64
 echo "ac_add_options MOZ_PGO=1" >> .mozconfig
 
 cp %{SOURCE205} .
 . ./run-wayland-compositor.sh
-%endif
 
 ./mach build -v
 
