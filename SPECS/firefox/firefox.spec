@@ -11,7 +11,7 @@
 %bcond official_branding 0
 
 Name:           firefox
-Version:        151.0.1
+Version:        152.0.1
 Release:        %autorelease
 Summary:        Free web browser backed by Mozilla
 License:        MPL-2.0
